@@ -1,3 +1,5 @@
+import styles from "./CaseStudiesSection.module.css";
+
 const ExternalIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" width={14} height={14} xmlns="http://www.w3.org/2000/svg">
     <path d="M14 5h5v5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -67,49 +69,48 @@ const CASES = [
 
 export function CaseStudiesSection() {
   return (
-    <section id="case-studies" style={{ maxWidth: 980, margin: "0 auto" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 460px))", justifyContent: "center", gap: 16 }}>
-        {CASES.map((c) => (
-          <div
-            key={c.name}
-            style={{ background: "#111", border: "1px solid #fff", borderRadius: 16, padding: 20, display: "flex", flexDirection: "column", gap: 16, height: "100%" }}
-          >
-            {/* Header */}
-            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div style={{
-                  width: 52, height: 52, borderRadius: 10, border: "1px solid #fff",
-                  background: c.logoBg, color: c.logoColor,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  flexShrink: 0, fontSize: 13, fontWeight: 700, whiteSpace: "pre-line", textAlign: "center", lineHeight: 1.2,
-                }}>
-                  {c.abbr}
+    <section className={styles.caseStudies} id="case-studies">
+      <div className={styles.inner}>
+        <h2
+          className={styles.title}
+        >
+          Results built on Strategy
+        </h2>
+
+        <div className={styles.grid}>
+          {CASES.map((c) => (
+            <article key={c.name} className={styles.card} data-case-study-card>
+              <div className={styles.cardHeader}>
+                <div className={styles.identity}>
+                  <div
+                    className={styles.iconWrap}
+                    style={{ background: c.logoBg, color: c.logoColor }}
+                  >
+                    {c.abbr}
+                  </div>
+                  <h3 className={styles.company}>{c.name}</h3>
                 </div>
-                <span style={{ fontSize: 18, fontWeight: 600, color: "#fff", lineHeight: 1.3 }}>{c.name}</span>
+
+                <a href={c.href} target="_blank" rel="noopener noreferrer" className={styles.linkIcon}>
+                  <ExternalIcon />
+                </a>
               </div>
 
-              <a
-                href={c.href} target="_blank" rel="noopener noreferrer"
-                style={{ width: 34, height: 34, borderRadius: 8, background: "#1c1c1c", border: "1px solid #fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, textDecoration: "none", color: "#888" }}
-              >
-                <ExternalIcon />
-              </a>
-            </div>
+              <p className={styles.paragraph}>{c.desc}</p>
 
-            {/* Description */}
-            <p style={{ fontSize: 13.5, lineHeight: 1.75, color: "#999", margin: 0 }}>{c.desc}</p>
-
-            {/* KPI tiles */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginTop: "auto" }}>
-              {c.kpis.map((kpi) => (
-                <div key={kpi.lab} style={{ background: "#1a1a1a", border: "1px solid #fff", borderRadius: 10, padding: "14px 12px", display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontSize: 22, fontWeight: 700, color: kpi.c, lineHeight: 1 }}>{kpi.val}</span>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: "#fff", lineHeight: 1.4 }}>{kpi.lab}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+              <div className={styles.metrics}>
+                {c.kpis.map((kpi) => (
+                  <div key={kpi.lab} className={styles.metric}>
+                    <span className={styles.metricNumber} style={{ color: kpi.c }}>
+                      {kpi.val}
+                    </span>
+                    <span className={styles.metricLabel}>{kpi.lab}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

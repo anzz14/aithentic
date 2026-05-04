@@ -5,7 +5,9 @@ type HeroSectionProps = {
 
 export function HeroSection({ word, transitionState }: HeroSectionProps) {
   return (
-    <main className="hero">
+    <main className={`hero hero--${transitionState}`} data-word={word}>
+      <div className="hero__bgImage" aria-hidden="true" />
+      <div className="hero__frost" aria-hidden="true" />
       <div className="hero__blob hero__blob--orange" aria-hidden="true" />
       <div className="hero__blob hero__blob--grey" aria-hidden="true" />
       <div className="hero__noise" aria-hidden="true" />
@@ -23,37 +25,35 @@ export function HeroSection({ word, transitionState }: HeroSectionProps) {
 
         <section className="hero__content">
           <h1 className="hero__headline">
-            <span className="hero__line">We Build</span>
-            <span className="hero__line hero__line--animated">
-              <span className="hero__wordShell" aria-live="polite">
-                <span className={`hero__word hero__word--${transitionState}`}>{word}</span>
-              </span>
-            </span>
-            <span className="hero__line">Digital Experiences</span>
+            <span className="hero__line">Authentic Growth</span>
+            <span className="hero__line">For the AI Era</span>
           </h1>
 
           <p className="hero__copy">
-            We fuse AI with design craft to build websites, chatbots, and campaigns that don&apos;t
-            just look extraordinary - they generate real business results.
+            Scaling brands through high-performance SEO, Website Optimization, and Content Marketing
+            that builds long-term trust in the AI era.
           </p>
 
           <div className="hero__actions">
             <button className="cta cta--primary" type="button">
-              Start Your Project →
+              Get Free SEO Audit
             </button>
             <button className="cta cta--secondary" type="button">
-              View Our Work
+              View Case Studies
             </button>
           </div>
-
-          <div className="hero__stats" aria-label="Agency highlights">
-            <span className="hero__stat">Trusted by 50+ businesses</span>
-            <span className="hero__divider" aria-hidden="true" />
-            <span className="hero__stat">$4M+ in revenue generated</span>
-            <span className="hero__divider" aria-hidden="true" />
-            <span className="hero__stat">98% satisfaction rate</span>
-          </div>
         </section>
+
+        <div className="hero__ticker" aria-label="Agency highlights">
+          <div className="hero__ticker-track">
+            <div className="hero__ticker-group">
+              <span className="hero__ticker-item">20+ clients • 200+ projects delivered • SEO strategy • Technical SEO • Local SEO • Website optimization • Content marketing • Conversion rate optimization • AI-first execution</span>
+            </div>
+            <div className="hero__ticker-group" aria-hidden="true">
+              <span className="hero__ticker-item">20+ clients • 200+ projects delivered • SEO strategy • Technical SEO • Local SEO • Website optimization • Content marketing • Conversion rate optimization • AI-first execution</span>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );

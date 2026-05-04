@@ -1,12 +1,42 @@
 import type { CSSProperties } from "react";
 
 const services = [
-  "AI Website Design",
-  "SEO & Growth",
-  "AI Voice Assistants",
-  "Smart Chatbots",
-  "Landing Pages",
-  "Digital Marketing",
+  {
+    title: "Full-Stack SEO",
+    description:
+      "Improve visibility across Google and AI-driven search platforms through strategic SEO.",
+    bullets: ["Technical SEO", "AI Search Visibility", "AEO & GEO"],
+  },
+  {
+    title: "Content Writing",
+    description:
+      "Content systems to attract high-intent traffic and build authority in your niche on search and answer engines.",
+    bullets: ["SEO Blogs", "Website Copy", "Thought Leadership"],
+  },
+  {
+    title: "Performance Advertising",
+    description:
+      "Data-driven paid ad campaigns to focus on lead generation and measurable ROI across digital channels.",
+    bullets: ["Meta & Google Ads", "Funnel Optimization", "Retargeting Systems"],
+  },
+  {
+    title: "App Store Optimization",
+    description:
+      "Boost app visibility and search rankings through targeted optimization strategies on app stores.",
+    bullets: ["Keyword Research", "Store Optimization", "Competitor Tracking"],
+  },
+  {
+    title: "Branding & Strategy",
+    description:
+      "Build brand narratives and positioning that communicate clearly and stand out in crowded markets.",
+    bullets: ["Messaging Strategy", "Brand Identity", "GTM Alignment"],
+  },
+  {
+    title: "AI Content Creation",
+    description:
+      "AI-generated content that represents the brand, feels native to the platform, and holds attention.",
+    bullets: ["AI Video Content", "Social Media Creatives", "Short-Form Content"],
+  },
 ];
 
 export function ServicesSection() {
@@ -20,18 +50,18 @@ export function ServicesSection() {
           </div>
 
           <div className="services__intro">
-            <h2 className="services__title">Services That Move The Needle</h2>
+            <h2 className="services__title">Visibility Across Every Platform</h2>
             <p className="services__subline">
-              We blend design, automation, and growth strategy to build systems that create
-              momentum, not just impressions.
+              We combine AI-driven growth strategies for all platforms to outperform competitors
+              and maximize your digital impact.
             </p>
           </div>
         </div>
 
         <div className="services__grid">
-          {services.map((title) => (
+          {services.map((service) => (
             <article
-              key={title}
+              key={service.title}
               className="service-card"
               style={{ ["--service-accent" as const]: "#F97316" } as CSSProperties}
             >
@@ -39,14 +69,17 @@ export function ServicesSection() {
                 <span className="service-card__pill">Service</span>
                 <span className="service-card__iconWrap" aria-hidden="true">★</span>
               </div>
-              <h3 className="service-card__title">{title}</h3>
+              <h3 className="service-card__title">{service.title}</h3>
               <p className="service-card__description">
-                Strategy-first execution tailored to growth and measurable outcomes.
+                {service.description}
               </p>
               <ul className="service-card__features">
-                <li className="service-card__feature"><span className="service-card__dot" aria-hidden="true" /><span>Goal aligned</span></li>
-                <li className="service-card__feature"><span className="service-card__dot" aria-hidden="true" /><span>Conversion focused</span></li>
-                <li className="service-card__feature"><span className="service-card__dot" aria-hidden="true" /><span>Built to scale</span></li>
+                {service.bullets.map((bullet) => (
+                  <li key={bullet} className="service-card__feature">
+                    <span className="service-card__dot" aria-hidden="true" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
               </ul>
               <a className="service-card__link" href="#contact">Learn more ↗</a>
             </article>

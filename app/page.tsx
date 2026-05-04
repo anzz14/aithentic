@@ -8,6 +8,7 @@ import { HeroSection } from "./components/sections/HeroSection";
 import { ProcessSection } from "./components/sections/ProcessSection";
 import { ServicesSection } from "./components/sections/ServicesSection";
 import { TestimonialsSection } from "./components/sections/TestimonialsSection";
+import { VisibilityBoostSection } from "./components/sections/VisibilityBoostSection";
 import { WhyUsSection } from "./components/sections/WhyUsSection";
 
 export default function Home() {
@@ -178,8 +179,9 @@ export default function Home() {
 
       <HeroSection word={rotatingWords[wordIndex]} transitionState={transitionState} />
       <ServicesSection />
-      <ProcessSection />
+      <VisibilityBoostSection />
       <CaseStudiesSection />
+      <ProcessSection />
       <TestimonialsSection
         testimonialIndex={testimonialIndex}
         testimonialTransition={testimonialTransition}

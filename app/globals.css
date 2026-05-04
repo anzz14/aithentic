@@ -190,6 +190,28 @@ button {
   padding: var(--space-10);
 }
 
+.hero__bgImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.08);
+  filter: blur(10px) brightness(0.30) saturate(1.00) contrast(1.02);
+}
+
+.hero__frost {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  background: transparent;
+}
+
 .hero::before {
   content: "";
   position: absolute;
@@ -201,6 +223,7 @@ button {
   opacity: 0.18;
   mix-blend-mode: soft-light;
   pointer-events: none;
+  z-index: 2;
 }
 
 .hero__blob {
@@ -210,6 +233,7 @@ button {
   filter: blur(140px);
   opacity: 0.45;
   pointer-events: none;
+  z-index: 3;
 }
 
 .hero__blob--orange {
@@ -234,10 +258,12 @@ button {
   opacity: 0.25;
   mix-blend-mode: overlay;
   pointer-events: none;
+  z-index: 3;
 }
 
 .hero__shell {
   position: relative;
+  z-index: 4;
   width: min(100%, 90rem);
   min-height: 100vh;
   display: grid;
@@ -375,9 +401,52 @@ button {
   background: rgba(156, 163, 175, 0.35);
 }
 
+.hero__ticker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 2;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.hero__ticker-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: heroTickerSlide 42s linear infinite;
+}
+
+.hero__ticker-group {
+  flex: 0 0 auto;
+  display: inline-flex;
+}
+
+.hero__ticker-item {
+  flex: 0 0 auto;
+  padding-inline: clamp(2.5rem, 5vw, 4rem);
+  color: var(--color-muted-strong);
+  font-size: 0.875rem;
+  letter-spacing: 0.09em;
+  word-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes heroTickerSlide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .hero__badge {
   position: absolute;
-  z-index: 1;
+  z-index: 5;
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
@@ -455,6 +524,15 @@ button {
   .hero__divider {
     display: none;
   }
+
+  .hero__ticker {
+    bottom: 0.75rem;
+  }
+
+  .hero__ticker-item {
+    font-size: 0.78rem;
+    padding-inline: var(--space-6);
+  }
 }
 
 @media (max-width: 640px) {
@@ -469,6 +547,12 @@ button {
   .hero__stats {
     gap: var(--space-3);
     flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__ticker-track {
+    animation-duration: 58s;
   }
 }
 
@@ -744,6 +828,126 @@ button {
     }
   }
 
+  .visibility-boost {
+    padding: 1rem clamp(1.25rem, 4vw, 3rem) 0;
+  }
+
+  .visibility-boost__inner {
+    width: min(100%, 75rem);
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+    align-items: center;
+  }
+
+  .visibility-boost__media {
+    padding: 0;
+  }
+
+  .visibility-boost__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+    object-fit: contain;
+  }
+
+  .visibility-boost__body {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .visibility-boost__title {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-syne), Arial, Helvetica, sans-serif;
+    font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .visibility-boost__copy {
+    margin: 1rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.98rem;
+    line-height: 1.75;
+    max-width: 58ch;
+  }
+
+  .visibility-boost__stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .visibility-boost__stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+  }
+
+  .visibility-boost__value {
+    color: var(--color-text);
+    font-family: var(--font-syne), Arial, Helvetica, sans-serif;
+    font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .visibility-boost__label {
+    color: var(--color-muted-strong);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .visibility-boost__stat + .visibility-boost__stat::before {
+    content: "";
+    width: 1px;
+    height: 1.2rem;
+    background: rgba(156, 163, 175, 0.4);
+    margin-right: 0.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .visibility-boost__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .visibility-boost__media {
+      max-width: 34rem;
+    }
+
+    .visibility-boost__stats {
+      width: min(100%, 32rem);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .visibility-boost {
+      padding-top: 0.5rem;
+    }
+
+    .visibility-boost__inner {
+      padding: 0;
+    }
+
+    .visibility-boost__stats {
+      width: 100%;
+      gap: 0.9rem;
+    }
+
+    .visibility-boost__stat + .visibility-boost__stat::before {
+      display: none;
+    }
+  }
+
   .process {
     padding: 7.5rem clamp(1.25rem, 4vw, 3rem);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0));
@@ -789,8 +993,8 @@ button {
     grid-template-columns: minmax(0, 1fr) 4rem minmax(0, 1fr);
     align-items: center;
     min-height: 12rem;
-    opacity: 0;
-    transform: translateX(var(--step-offset, 0));
+    opacity: 1;
+    transform: translateX(0);
     transition:
       opacity 600ms ease,
       transform 600ms ease;
@@ -988,7 +1192,7 @@ button {
   }
 
   .case-studies {
-    padding: 7.5rem clamp(1.25rem, 4vw, 3rem);
+    padding: 10rem clamp(1.25rem, 4vw, 3rem) 7.5rem;
   }
 
   .case-studies__inner {
@@ -1023,7 +1227,7 @@ button {
     max-width: 14ch;
     color: var(--color-text);
     font-family: var(--font-syne), Arial, Helvetica, sans-serif;
-    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+    font-size: clamp(1.65rem, 3.2vw, 2.6rem);
     font-weight: 800;
     line-height: 1.02;
     letter-spacing: -0.05em;
