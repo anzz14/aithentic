@@ -1,6 +1,9 @@
 export function VisibilityBoostSection() {
   return (
-    <section className="visibility-boost" id="visibility-boost">
+    <section
+      className="visibility-boost relative overflow-hidden bg-[radial-gradient(circle_at_80%_20%,rgba(249,115,22,0.08),transparent_26%),linear-gradient(180deg,#171717_0%,#151515_100%)]"
+      id="visibility-boost"
+    >
       <div className="visibility-boost__inner">
         <div className="visibility-boost__media" aria-hidden="true">
           <img

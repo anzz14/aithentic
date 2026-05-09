@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { rotatingWords, testimonials } from "./components/data";
-import { CaseStudiesSection } from "./components/sections/CaseStudiesSection";
 import { CtaBannerSection } from "./components/sections/CtaBannerSection";
 import { HeroSection } from "./components/sections/HeroSection";
 import { ProcessSection } from "./components/sections/ProcessSection";
@@ -180,7 +179,6 @@ export default function Home() {
       <HeroSection word={rotatingWords[wordIndex]} transitionState={transitionState} />
       <ServicesSection />
       <VisibilityBoostSection />
-      <CaseStudiesSection />
       <ProcessSection />
       <TestimonialsSection
         testimonialIndex={testimonialIndex}

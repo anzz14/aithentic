@@ -29,7 +29,10 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section className="process" id="process">
+    <section
+      className="process relative overflow-hidden bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]"
+      id="process"
+    >
       <div className="process__inner">
         <h2 className="process__title">A smarter path to growth.</h2>
         <p
