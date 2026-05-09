@@ -139,7 +139,6 @@ export function ServicesSection() {
                   </li>
                 ))}
               </ul>
-              <a className="service-card__link" href="#contact">Learn more ↗</a>
             </motion.article>
           ))}
         </motion.div>
