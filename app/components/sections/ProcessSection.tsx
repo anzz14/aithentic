@@ -1,4 +1,8 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const steps = [
   {
@@ -28,14 +32,41 @@ const steps = [
 ];
 
 export function ProcessSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
   return (
-    <section
+    <motion.section
+      ref={ref}
       className="process relative overflow-hidden bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]"
       id="process"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
     >
-      <div className="process__inner">
-        <h2 className="process__title">A smarter path to growth.</h2>
-        <p
+      <motion.div className="process__inner" variants={containerVariants}>
+        <motion.h2 className="process__title" variants={itemVariants}>A smarter path to growth.</motion.h2>
+        <motion.p
           style={{
             margin: "-1.25rem auto 3.5rem",
             maxWidth: "58rem",
@@ -44,20 +75,22 @@ export function ProcessSection() {
             lineHeight: 1.75,
             textAlign: "center",
           }}
+          variants={itemVariants}
         >
           Helping brands with the intelligence they need to thrive and accelerate their growth.
-        </p>
-        <div className="process__timeline" aria-label="Project delivery process">
+        </motion.p>
+        <motion.div className="process__timeline" aria-label="Project delivery process" variants={containerVariants}>
           <div className="process__line" aria-hidden="true" />
           {steps.map((step, index) => {
             const side = index % 2 === 0 ? "left" : "right";
             return (
-              <article
+              <motion.article
                 key={step.title}
                 className={`process-step process-step--${side}`}
                 data-process-step
                 data-side={side}
                 style={{ ["--step-accent" as const]: "#F97316" } as CSSProperties}
+                variants={itemVariants}
               >
                 <div className={`process-step__content process-step__content--${side}`}>
                   <div className="process-step__meta">
@@ -78,11 +111,11 @@ export function ProcessSection() {
                   <span className="process-step__dot">•</span>
                 </div>
                 <div className="process-step__spacer" aria-hidden="true" />
-              </article>
+              </motion.article>
             );
           })}
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 }

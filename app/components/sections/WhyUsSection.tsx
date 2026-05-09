@@ -1,5 +1,9 @@
+"use client";
+
 import type { LucideIcon } from "lucide-react";
 import { BarChart3, Gauge, Search, ShieldCheck } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const values = [
   {
@@ -30,17 +34,44 @@ const values = [
 }>;
 
 export function WhyUsSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
   return (
-    <section
+    <motion.section
+      ref={ref}
       id="why-us"
       className="relative overflow-hidden px-5 py-14 sm:px-8 lg:px-12 lg:py-16 bg-[radial-gradient(circle_at_18%_0%,rgba(249,115,22,0.14),transparent_28%),radial-gradient(circle_at_82%_10%,rgba(255,255,255,0.06),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
     >
       <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-size-[72px_72px] mask-[radial-gradient(circle_at_center,black,transparent_88%)]" />
 
-      <div className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-4xl border border-white/10 bg-transparent p-0 shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:p-0 lg:p-0">
+      <motion.div className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-4xl border border-white/10 bg-transparent p-0 shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:p-0 lg:p-0" variants={containerVariants}>
 
-        <div className="relative grid grid-cols-1 gap-4 lg:grid-cols-[0.92fr_1.08fr] lg:gap-5">
-          <div className="rounded-3xl border border-white/10 bg-[#1a1a1a]/75 p-5 backdrop-blur-md sm:p-6 lg:p-7">
+        <motion.div className="relative grid grid-cols-1 gap-4 lg:grid-cols-[0.92fr_1.08fr] lg:gap-5" variants={containerVariants}>
+          <motion.div className="rounded-3xl border border-white/10 bg-[#1a1a1a]/75 p-5 backdrop-blur-md sm:p-6 lg:p-7" variants={itemVariants}>
           <span className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-orange-500">
             WHY US
           </span>
@@ -73,13 +104,14 @@ export function WhyUsSection() {
               </span>
             ))}
           </div>
-        </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <motion.div className="grid grid-cols-1 gap-2 sm:grid-cols-2" variants={containerVariants}>
             {values.map((value) => (
-              <article
+              <motion.article
                 key={value.title}
                 className="group flex items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-md"
+                variants={itemVariants}
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.9rem] border border-white/10 bg-white/6 text-orange-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
                   <value.icon size={14} strokeWidth={2.2} />
@@ -91,11 +123,11 @@ export function WhyUsSection() {
                   </h3>
                   <p className="text-sm leading-7 text-slate-400">{value.description}</p>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 }

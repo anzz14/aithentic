@@ -1,4 +1,8 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import {
   LayoutGrid,
   Megaphone,
@@ -61,10 +65,37 @@ const services = [
 }>;
 
 export function ServicesSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
   return (
-    <section
+    <motion.section
+      ref={ref}
       className="services relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.12),transparent_30%),linear-gradient(180deg,#1d1d1d_0%,#171717_100%)]"
       id="services"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
     >
       <div className="services__inner">
         <div className="services__headingRow">
@@ -82,12 +113,13 @@ export function ServicesSection() {
           </div>
         </div>
 
-        <div className="services__grid">
+        <motion.div className="services__grid" variants={containerVariants}>
           {services.map((service) => (
-            <article
+            <motion.article
               key={service.title}
               className="service-card"
               style={{ ["--service-accent" as const]: "#F97316" } as CSSProperties}
+              variants={itemVariants}
             >
               <div className="service-card__top">
                 <span className="service-card__pill">Service</span>
@@ -108,10 +140,10 @@ export function ServicesSection() {
                 ))}
               </ul>
               <a className="service-card__link" href="#contact">Learn more ↗</a>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
