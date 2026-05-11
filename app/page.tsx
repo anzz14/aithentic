@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { rotatingWords, testimonials } from "./components/data";
 import { CtaBannerSection } from "./components/sections/CtaBannerSection";
+import { ContactModal } from "./components/ContactModal";
+import { AuditModal } from "./components/AuditModal";
 import { HeroSection } from "./components/sections/HeroSection";
 import { ProcessSection } from "./components/sections/ProcessSection";
 import { ServicesSection } from "./components/sections/ServicesSection";
@@ -14,7 +16,6 @@ import { FooterSection } from "./components/sections/FooterSection";
 export default function Home() {
   const navLinks = [
     { label: "Services", href: "#services" },
-    { label: "Work", href: "#case-studies" },
     { label: "Process", href: "#process" },
     { label: "Testimonials", href: "#testimonials" },
     { label: "Contact", href: "#contact" },
@@ -28,6 +29,9 @@ export default function Home() {
   const [testimonialTransition, setTestimonialTransition] = useState<
     "idle" | "exiting" | "entering"
   >("idle");
+  const [isNavScrolled, setIsNavScrolled] = useState(false);
+  const [isAuditOpen, setIsAuditOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   useEffect(() => {
     const timeoutIds = new Set<number>();
@@ -138,6 +142,19 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const updateNavState = () => {
+      setIsNavScrolled(window.scrollY > 12);
+    };
+
+    updateNavState();
+    window.addEventListener("scroll", updateNavState, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", updateNavState);
+    };
+  }, []);
+
   const activateTestimonial = (index: number) => {
     if (index === testimonialIndex) {
       return;
@@ -157,7 +174,7 @@ export default function Home() {
 
   return (
     <div className="agency-page" id="top">
-      <header className="site-nav" aria-label="Primary navigation">
+      <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label="Primary navigation">
         <div className="site-nav__inner">
           <a className="site-nav__brand" href="#top">
             <span className="site-nav__brand-accent">Ai</span>thentic
@@ -171,13 +188,24 @@ export default function Home() {
             ))}
           </nav>
 
-          <a className="site-nav__cta" href="#contact">
-            Start Project
-          </a>
+          <button
+            className="site-nav__cta"
+            type="button"
+            onClick={() => {
+              setIsContactOpen(true);
+            }}
+          >
+            Contact Us
+          </button>
         </div>
       </header>
 
-      <HeroSection word={rotatingWords[wordIndex]} transitionState={transitionState} />
+      <HeroSection
+        word={rotatingWords[wordIndex]}
+        transitionState={transitionState}
+        onOpenAudit={() => setIsAuditOpen(true)}
+        onOpenContact={() => setIsContactOpen(true)}
+      />
       <ServicesSection />
       <VisibilityBoostSection />
       <ProcessSection />
@@ -187,7 +215,12 @@ export default function Home() {
         onSelect={activateTestimonial}
       />
       <WhyUsSection />
-      <CtaBannerSection />
+      <CtaBannerSection
+        onOpenAudit={() => setIsAuditOpen(true)}
+        onOpenContact={() => setIsContactOpen(true)}
+      />
+      <AuditModal open={isAuditOpen} onClose={() => setIsAuditOpen(false)} />
+      <ContactModal open={isContactOpen} onClose={() => setIsContactOpen(false)} />
       <FooterSection />
     </div>
   );

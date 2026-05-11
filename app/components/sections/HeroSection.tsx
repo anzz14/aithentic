@@ -1,9 +1,11 @@
 type HeroSectionProps = {
   word: string;
   transitionState: "idle" | "exiting" | "entering";
+  onOpenAudit?: () => void;
+  onOpenContact?: () => void;
 };
 
-export function HeroSection({ word, transitionState }: HeroSectionProps) {
+export function HeroSection({ word, transitionState, onOpenAudit, onOpenContact }: HeroSectionProps) {
   return (
     <main className={`hero hero--${transitionState}`} data-word={word}>
       <div className="hero__bgImage" aria-hidden="true" />
@@ -35,11 +37,23 @@ export function HeroSection({ word, transitionState }: HeroSectionProps) {
           </p>
 
           <div className="hero__actions">
-            <button className="cta cta--primary" type="button">
+            <button
+              className="cta cta--primary"
+              type="button"
+              onClick={() => {
+                if (onOpenAudit) onOpenAudit();
+              }}
+            >
               Get Free SEO Audit
             </button>
-            <button className="cta cta--secondary" type="button">
-              View Case Studies
+            <button
+              className="cta cta--secondary"
+              type="button"
+              onClick={() => {
+                if (onOpenContact) onOpenContact();
+              }}
+            >
+              Contact Us
             </button>
           </div>
         </section>

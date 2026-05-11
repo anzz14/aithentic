@@ -3,7 +3,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-export function CtaBannerSection() {
+export function CtaBannerSection({
+  onOpenAudit,
+  onOpenContact,
+}: {
+  onOpenAudit?: () => void;
+  onOpenContact?: () => void;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -68,8 +74,20 @@ export function CtaBannerSection() {
                 <button
                   className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-orange-500 to-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(249,115,22,0.25)] transition-transform hover:-translate-y-0.5"
                   type="button"
+                  onClick={() => {
+                    if (onOpenAudit) onOpenAudit();
+                  }}
                 >
                   Get a Free SEO Audit
+                </button>
+                <button
+                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-white/10"
+                  type="button"
+                  onClick={() => {
+                    if (onOpenContact) onOpenContact();
+                  }}
+                >
+                  Contact Us
                 </button>
               </motion.div>
             </motion.div>

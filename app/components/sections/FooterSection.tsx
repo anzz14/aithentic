@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Phone } from "lucide-react";
 
 export function FooterSection() {
   const ref = useRef(null);
@@ -66,6 +67,10 @@ export function FooterSection() {
             <div className="grid gap-2 text-sm text-slate-300">
               <a className="transition-colors hover:text-white" href="mailto:hello@aithentic.com">hello@aithentic.com</a>
               <a className="transition-colors hover:text-white" href="tel:+10000000000">+1 (000) 000-0000</a>
+              <a className="transition-colors hover:text-white inline-flex items-center gap-2" href="https://wa.me/7021091516" target="_blank" rel="noopener noreferrer">
+                <Phone size={16} />
+                WhatsApp
+              </a>
               <a className="transition-colors hover:text-white" href="#top">Back to top</a>
             </div>
           </motion.div>
