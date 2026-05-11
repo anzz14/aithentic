@@ -106,11 +106,11 @@ export function WhyUsSection() {
           </div>
           </motion.div>
 
-          <motion.div className="grid grid-cols-1 gap-2 sm:grid-cols-2" variants={containerVariants}>
+          <motion.div className="grid h-full content-center grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:gap-4" variants={containerVariants}>
             {values.map((value) => (
               <motion.article
                 key={value.title}
-                className="group flex items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-md"
+                className="group flex h-36 items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-md lg:h-40"
                 variants={itemVariants}
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.9rem] border border-white/10 bg-white/6 text-orange-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">

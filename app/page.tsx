@@ -9,6 +9,7 @@ import { ServicesSection } from "./components/sections/ServicesSection";
 import { TestimonialsSection } from "./components/sections/TestimonialsSection";
 import { VisibilityBoostSection } from "./components/sections/VisibilityBoostSection";
 import { WhyUsSection } from "./components/sections/WhyUsSection";
+import { FooterSection } from "./components/sections/FooterSection";
 
 export default function Home() {
   const navLinks = [
@@ -187,6 +188,7 @@ export default function Home() {
       />
       <WhyUsSection />
       <CtaBannerSection />
+      <FooterSection />
     </div>
   );
 }
