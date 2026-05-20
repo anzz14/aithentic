@@ -50,27 +50,42 @@ export function CtaBannerSection({
         >
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-size-[68px_68px] opacity-10 mask-[radial-gradient(circle_at_center,black,transparent_78%)]" />
           <motion.div
-            className="relative grid gap-6 lg:grid-cols-[1fr] lg:items-center lg:gap-8"
+            className="relative flex flex-col items-center justify-center gap-6 text-center lg:gap-8"
+            style={{ textAlign: "center" }}
             variants={containerVariants}
           >
 
-            <motion.div className="grid gap-4" variants={itemVariants}>
-              <motion.div className="grid gap-3" variants={itemVariants}>
-                <span className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-orange-500">
-                  Contact
+            <motion.div
+              className="flex w-full max-w-6xl flex-col items-center gap-4 text-center"
+              style={{ textAlign: "center" }}
+              variants={itemVariants}
+            >
+              <motion.div
+                className="flex w-full flex-col items-center gap-3 text-center"
+                style={{ textAlign: "center" }}
+                variants={itemVariants}
+              >
+                <span
+                  className="text-center text-[0.75rem] font-bold uppercase tracking-[0.18em] text-orange-500"
+                  style={{ textAlign: "center" }}
+                >
+                  Get a Free Audit
                 </span>
                 <h2
-                  className="max-w-[14ch] text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-[1.02] tracking-tighter text-white"
-                  style={{ fontFamily: "var(--font-syne)" }}
+                  className="mx-auto max-w-[24ch] text-center text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-[1.02] tracking-tighter text-white"
+                  style={{ fontFamily: "var(--font-syne)", textAlign: "center" }}
                 >
                   Find out exactly where you're losing traffic
                 </h2>
-                <p className="max-w-2xl text-[0.98rem] leading-8 text-slate-300">
+                <p
+                  className="mx-auto max-w-6xl text-center text-[0.98rem] leading-8 text-slate-300"
+                  style={{ textAlign: "center" }}
+                >
                   If you aren't visible on every platform, you don't exist. Get a Free audit of your website to check current SEO health, where your competitors are outranking you, and flag the quickest wins, across traditional search and AI search. Do not miss out on unlimited opportunities for your business.
                 </p>
               </motion.div>
 
-              <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
+              <motion.div className="flex w-full flex-wrap justify-center gap-3" variants={itemVariants}>
                 <button
                   className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-orange-500 to-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(249,115,22,0.25)] transition-transform hover:-translate-y-0.5"
                   type="button"
