@@ -31,6 +31,8 @@ const steps = [
   },
 ];
 
+const stepAccents = ["#fb923c", "#f97316", "#ea580c", "#d97706"];
+
 export function ProcessSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -58,63 +60,72 @@ export function ProcessSection() {
   return (
     <motion.section
       ref={ref}
-      className="process relative overflow-hidden bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]"
+      className="process relative overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.12),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]"
       id="process"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
     >
       <motion.div className="process__inner" variants={containerVariants}>
-        <motion.h2 className="process__title" variants={itemVariants}>A smarter path to growth.</motion.h2>
-        <motion.p
-          style={{
-            margin: "-1.25rem auto 3.5rem",
-            maxWidth: "58rem",
-            color: "var(--color-muted)",
-            fontSize: "clamp(0.98rem, 1.8vw, 1.12rem)",
-            lineHeight: 1.75,
-            textAlign: "center",
-          }}
-          variants={itemVariants}
-        >
-          Helping brands with the intelligence they need to thrive and accelerate their growth.
-        </motion.p>
-        <motion.div className="process__timeline" aria-label="Project delivery process" variants={containerVariants}>
-          <div className="process__line" aria-hidden="true" />
-          {steps.map((step, index) => {
-            const side = index % 2 === 0 ? "left" : "right";
-            return (
+        <motion.div className="process__eyebrowRow" variants={itemVariants}>
+          <span className="process__eyebrowLine" aria-hidden="true" />
+          <span className="process__eyebrow">OUR PROCESS</span>
+        </motion.div>
+
+        <div className="process__layout">
+          <motion.aside className="process__intro" variants={itemVariants}>
+            <span className="process__introKicker">A smarter path to growth</span>
+            <h2 className="process__title">We turn ambiguity into a clear operating rhythm.</h2>
+            <p className="process__subtitle">
+              Helping brands move from scattered ideas to a disciplined plan that keeps decisions,
+              execution, and iteration aligned.
+            </p>
+
+            <div className="process__highlights" aria-label="Process priorities">
+              <div className="process__highlight">
+                <span className="process__highlightValue">01</span>
+                <span className="process__highlightLabel">Research-led</span>
+              </div>
+              <div className="process__highlight">
+                <span className="process__highlightValue">02</span>
+                <span className="process__highlightLabel">Fast approvals</span>
+              </div>
+              <div className="process__highlight">
+                <span className="process__highlightValue">03</span>
+                <span className="process__highlightLabel">Continuous lift</span>
+              </div>
+            </div>
+          </motion.aside>
+
+          <motion.div className="process__steps" aria-label="Project delivery process" variants={containerVariants}>
+            {steps.map((step, index) => (
               <motion.article
                 key={step.title}
-                className={`process-step process-step--${side}`}
+                className="process-card"
                 data-process-step
-                data-side={side}
-                style={{ ["--step-accent" as const]: "#F97316" } as CSSProperties}
+                style={{ ["--step-accent" as const]: stepAccents[index] } as CSSProperties}
                 variants={itemVariants}
               >
-                <div className={`process-step__content process-step__content--${side}`}>
-                  <div className="process-step__meta">
-                    <span className="process-step__number">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="process-step__eyebrow">Step</span>
-                  </div>
-                  <h3 className="process-step__heading">{step.title}</h3>
-                  <p className="process-step__description">{step.description}</p>
-                  <div className="process-step__tags">
-                    {step.tags.map((tag) => (
-                      <span key={tag} className="process-step__tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <div className="process-card__top">
+                  <span className="process-card__number">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="process-card__line" aria-hidden="true" />
+                  <span className="process-card__step">Step</span>
                 </div>
-                <div className="process-step__center" aria-hidden="true">
-                  <span className="process-step__dot">•</span>
+
+                <h3 className="process-card__heading">{step.title}</h3>
+                <p className="process-card__description">{step.description}</p>
+
+                <div className="process-card__tags">
+                  {step.tags.map((tag) => (
+                    <span key={tag} className="process-card__tag">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <div className="process-step__spacer" aria-hidden="true" />
               </motion.article>
-            );
-          })}
-        </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </motion.div>
     </motion.section>
   );
