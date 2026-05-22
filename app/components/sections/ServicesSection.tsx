@@ -3,6 +3,7 @@
 import type { CSSProperties } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 import {
   LayoutGrid,
   Megaphone,
@@ -13,56 +14,27 @@ import {
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
+import { serviceCards } from "../servicesData";
 
-const services = [
-  {
-    title: "Full-Stack SEO",
-    description:
-      "Improve visibility across Google and AI-driven search platforms through strategic SEO.",
-    bullets: ["Technical SEO", "AI Search Visibility", "AEO & GEO"],
-    icon: Search,
-  },
-  {
-    title: "Content Writing",
-    description:
-      "Content systems to attract high-intent traffic and build authority in your niche on search and answer engines.",
-    bullets: ["SEO Blogs", "Website Copy", "Thought Leadership"],
-    icon: PenLine,
-  },
-  {
-    title: "Performance Advertising",
-    description:
-      "Data-driven paid ad campaigns to focus on lead generation and measurable ROI across digital channels.",
-    bullets: ["Meta & Google Ads", "Funnel Optimization", "Retargeting Systems"],
-    icon: Megaphone,
-  },
-  {
-    title: "App Store Optimization",
-    description:
-      "Boost app visibility and search rankings through targeted optimization strategies on app stores.",
-    bullets: ["Keyword Research", "Store Optimization", "Competitor Tracking"],
-    icon: Smartphone,
-  },
-  {
-    title: "Branding & Strategy",
-    description:
-      "Build brand narratives and positioning that communicate clearly and stand out in crowded markets.",
-    bullets: ["Messaging Strategy", "Brand Identity", "GTM Alignment"],
-    icon: LayoutGrid,
-  },
-  {
-    title: "AI Content Creation",
-    description:
-      "AI-generated content that represents the brand, feels native to the platform, and holds attention.",
-    bullets: ["AI Video Content", "Social Media Creatives", "Short-Form Content"],
-    icon: Sparkles,
-  },
-] as const satisfies ReadonlyArray<{
+const iconByKey = {
+  search: Search,
+  sparkles: Sparkles,
+  penLine: PenLine,
+  megaphone: Megaphone,
+  smartphone: Smartphone,
+  layoutGrid: LayoutGrid,
+} as const satisfies Record<string, LucideIcon>;
+
+const services: ReadonlyArray<{
+  slug: string;
   title: string;
   description: string;
   bullets: readonly string[];
   icon: LucideIcon;
-}>;
+}> = serviceCards.map((service) => ({
+  ...service,
+  icon: iconByKey[service.iconKey],
+}));
 
 export function ServicesSection() {
   const ref = useRef(null);
@@ -116,29 +88,32 @@ export function ServicesSection() {
         <motion.div className="services__grid" variants={containerVariants}>
           {services.map((service) => (
             <motion.article
-              key={service.title}
+              key={service.slug}
               className="service-card"
               style={{ ["--service-accent" as const]: "#F97316" } as CSSProperties}
               variants={itemVariants}
             >
-              <div className="service-card__top">
-                <span className="service-card__pill">Service</span>
-                <span className="service-card__iconWrap" aria-hidden="true">
-                  <service.icon size={18} strokeWidth={2.15} />
-                </span>
-              </div>
-              <h3 className="service-card__title">{service.title}</h3>
-              <p className="service-card__description">
-                {service.description}
-              </p>
-              <ul className="service-card__features">
-                {service.bullets.map((bullet) => (
-                  <li key={bullet} className="service-card__feature">
-                    <span className="service-card__dot" aria-hidden="true" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+              <Link className="service-card__clickArea" href={`/services/${service.slug}`}>
+                <div className="service-card__top">
+                  <span className="service-card__pill">Service</span>
+                  <span className="service-card__iconWrap" aria-hidden="true">
+                    <service.icon size={18} strokeWidth={2.15} />
+                  </span>
+                </div>
+                <h3 className="service-card__title">{service.title}</h3>
+                <p className="service-card__description">
+                  {service.description}
+                </p>
+                <ul className="service-card__features">
+                  {service.bullets.map((bullet) => (
+                    <li key={bullet} className="service-card__feature">
+                      <span className="service-card__dot" aria-hidden="true" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+                <span className="service-card__link">Learn more</span>
+              </Link>
             </motion.article>
           ))}
         </motion.div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useState } from "react";
 
 const HELP_OPTIONS = [
@@ -10,9 +11,18 @@ const HELP_OPTIONS = [
   "E-commerce SEO",
   "Website redesign",
   "Google rankings",
+  "AI Search Optimization",
+  "Content SEO",
 ];
 
-export function AuditModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+type AuditModalProps = {
+  open: boolean;
+  onClose: () => void;
+  heading?: string;
+  initialHelpWith?: string[];
+};
+
+export function AuditModal({ open, onClose, heading, initialHelpWith = [] }: AuditModalProps) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
@@ -27,6 +37,14 @@ export function AuditModal({ open, onClose }: { open: boolean; onClose: () => vo
   });
   const [errors, setErrors] = useState<{ fullName?: string; email?: string; website?: string }>({});
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    setHelpWith(initialHelpWith);
+  }, [initialHelpWith, open]);
 
   if (!open) return null;
 
@@ -127,7 +145,7 @@ export function AuditModal({ open, onClose }: { open: boolean; onClose: () => vo
         className="relative z-70 w-full max-w-2xl rounded-2xl bg-[#0f0f0f] border border-white/10 p-6 shadow-lg"
       >
         <div className="flex items-start justify-between">
-          <h3 className="text-lg font-bold text-white">Get a Free SEO Audit</h3>
+          <h3 className="text-lg font-bold text-white">{heading ?? "Get a Free SEO Audit"}</h3>
           <button type="button" onClick={onClose} className="text-slate-400 hover:text-white">✕</button>
         </div>
 
@@ -161,7 +179,7 @@ export function AuditModal({ open, onClose }: { open: boolean; onClose: () => vo
               value={website}
               onChange={(e) => updateField("website", e.target.value)}
               onBlur={(e) => handleBlur("website", e.target.value)}
-              placeholder="Website URL"
+              placeholder="Website URL (optional)"
               className="rounded-md border border-white/10 bg-white/3 p-2 text-white outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
             />
             {touched.website && errors.website && <p className="text-sm text-red-400">{errors.website}</p>}
