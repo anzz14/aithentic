@@ -6,9 +6,21 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ word, transitionState, onOpenAudit, onOpenContact }: HeroSectionProps) {
+  const fluidArtVideo = "/Fluid_art_motion_graphic_202605210015 (online-video-cutter.com).mp4";
+
   return (
     <main className={`hero hero--${transitionState}`} data-word={word}>
-      <div className="hero__bgImage" aria-hidden="true" />
+      <video
+        className="hero__bgVideo"
+        aria-hidden="true"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+      >
+        <source src={encodeURI(fluidArtVideo)} type="video/mp4" />
+      </video>
       <div className="hero__frost" aria-hidden="true" />
       <div className="hero__blob hero__blob--orange" aria-hidden="true" />
       <div className="hero__blob hero__blob--grey" aria-hidden="true" />
