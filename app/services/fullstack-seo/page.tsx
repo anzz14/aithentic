@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -7,6 +8,7 @@ import {
   BarChart3,
   Bot,
   Gauge,
+  LayoutGrid,
   LineChart,
   ChevronDown,
   Search,
@@ -36,10 +38,14 @@ const pains = [
 const overviewCards = [
   {
     title: "Technical SEO",
+    description: "Fix the technical foundations that control crawlability, indexing, speed, and performance.",
+    icon: Search,
     items: ["Site audits", "Core Web Vitals", "Indexing fixes", "Schema optimization"],
   },
   {
     title: "AI Search Visibility",
+    description: "Build visibility across AI overviews, answer engines, and entity-driven search.",
+    icon: Sparkles,
     items: [
       "AI Overview optimization",
       "Generative engine optimization",
@@ -49,6 +55,8 @@ const overviewCards = [
   },
   {
     title: "On-Page SEO",
+    description: "Tune page-level signals so search intent, metadata, and internal links work together.",
+    icon: Gauge,
     items: [
       "Keyword optimization",
       "Internal linking",
@@ -58,10 +66,14 @@ const overviewCards = [
   },
   {
     title: "Content SEO",
+    description: "Create topical authority with search-led content systems and refresh cycles.",
+    icon: LineChart,
     items: ["SEO blogs", "Topic clusters", "Topical authority", "Content optimization"],
   },
   {
     title: "Local SEO",
+    description: "Increase map visibility, local relevance, and nearby customer discovery.",
+    icon: BarChart3,
     items: [
       "Google Business optimization",
       "Local citations",
@@ -71,6 +83,8 @@ const overviewCards = [
   },
   {
     title: "SEO Analytics & Reporting",
+    description: "Track what matters with rankings, traffic, and ROI reporting that is easy to read.",
+    icon: LayoutGrid,
     items: ["Keyword tracking", "Traffic reporting", "Competitor analysis", "ROI monitoring"],
   },
 ] as const;
@@ -231,13 +245,31 @@ export default function FullstackSeoPage() {
 
       <section className="seo-section seo-stats">
         <h2 className="seo-section__title">SEO Stats / Social Proof</h2>
-        <div className="seo-stats__grid">
-          {stats.map((item) => (
-            <article key={item.label} className="seo-stats__card">
-              <p className="seo-stats__value">{item.value}</p>
-              <p className="seo-stats__label">{item.label}</p>
-            </article>
-          ))}
+        <div className="seo-stats__layout">
+          <article className="seo-stats__introCard">
+            <p className="seo-stats__eyebrow">Proof that compounds</p>
+            <h3 className="seo-stats__introTitle">A compact snapshot of the organic growth we build.</h3>
+            <p className="seo-stats__introCopy">
+              These numbers are the baseline indicators we use to measure visibility, reach, and
+              traffic quality across search and AI discovery.
+            </p>
+          </article>
+
+          <div className="seo-stats__panel">
+            <div className="seo-stats__rail">
+              {stats.map((item) => (
+                <article key={item.label} className="seo-stats__row">
+                  <div className="seo-stats__valueWrap">
+                    <p className="seo-stats__value">{item.value}</p>
+                  </div>
+                  <div className="seo-stats__copy">
+                    <p className="seo-stats__label">{item.label}</p>
+                    <span className="seo-stats__line" aria-hidden="true" />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -266,13 +298,27 @@ export default function FullstackSeoPage() {
 
       <section className="seo-section">
         <h2 className="seo-section__title">Complete SEO Solutions for Modern Search</h2>
-        <div className="seo-overview__grid">
+        <div className="seo-overview__serviceGrid">
           {overviewCards.map((card) => (
-            <article key={card.title} className="seo-overview__card">
-              <h3>{card.title}</h3>
-              <ul className="seo-list seo-list--compact">
+            <article
+              key={card.title}
+              className="service-card seo-overview__serviceCard"
+              style={{ ["--service-accent" as const]: "#F97316" } as CSSProperties}
+            >
+              <div className="service-card__glow" aria-hidden="true" />
+              <div className="seo-overview__titleRow">
+                <h3 className="service-card__title">{card.title}</h3>
+                <span className="service-card__iconWrap" aria-hidden="true">
+                  <card.icon size={18} strokeWidth={2.15} />
+                </span>
+              </div>
+              <p className="service-card__description">{card.description}</p>
+              <ul className="service-card__features">
                 {card.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} className="service-card__feature">
+                    <span className="service-card__dot" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             </article>
@@ -397,7 +443,7 @@ export default function FullstackSeoPage() {
         onClose={() => setIsAuditOpen(false)}
       />
       <ContactModal open={isContactOpen} onClose={() => setIsContactOpen(false)} />
-      <FooterSection />
+      <FooterSection fullPage />
     </main>
   );
 }

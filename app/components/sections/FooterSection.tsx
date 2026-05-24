@@ -4,7 +4,11 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone } from "lucide-react";
 
-export function FooterSection() {
+type FooterSectionProps = {
+  fullPage?: boolean;
+};
+
+export function FooterSection({ fullPage = false }: FooterSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -31,16 +35,32 @@ export function FooterSection() {
 
   const currentYear = new Date().getFullYear();
 
+  const footerClassName = fullPage
+    ? "w-full min-h-[64vh] bg-[linear-gradient(180deg,#111111_0%,#0c0c0c_100%)] px-0 py-0"
+    : "px-5 py-10 sm:px-8 lg:px-12 lg:py-12 bg-[linear-gradient(180deg,#111111_0%,#0c0c0c_100%)]";
+
+  const panelClassName = fullPage
+    ? "mx-auto flex min-h-[64vh] w-full max-w-none flex-col justify-between gap-5 rounded-none border-0 bg-white/5 p-3 shadow-none backdrop-blur-md sm:p-5 lg:p-6"
+    : "mx-auto w-full max-w-6xl rounded-4xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-md sm:p-8 lg:p-10";
+
+  const contentGridClassName = fullPage
+    ? "grid gap-5 lg:grid-cols-[1.15fr_0.9fr_0.9fr] lg:gap-7"
+    : "grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:gap-10";
+
+  const bottomClassName = fullPage
+    ? "mt-auto flex flex-col gap-2 border-t border-white/10 pt-3 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between"
+    : "mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between";
+
   return (
     <motion.footer
       ref={ref}
-      className="px-5 py-10 sm:px-8 lg:px-12 lg:py-12 bg-[linear-gradient(180deg,#111111_0%,#0c0c0c_100%)]"
+      className={footerClassName}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
     >
-      <motion.div className="mx-auto w-full max-w-6xl rounded-4xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-md sm:p-8 lg:p-10" variants={itemVariants}>
-        <motion.div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:gap-10" variants={containerVariants}>
+      <motion.div className={panelClassName} variants={itemVariants}>
+        <motion.div className={contentGridClassName} variants={containerVariants}>
           <motion.div className="grid gap-4" variants={itemVariants}>
             <a className="inline-flex w-fit items-center text-2xl font-extrabold tracking-[-0.04em] text-white" href="#top" style={{ fontFamily: "var(--font-syne)" }}>
               <span className="text-orange-500">Ai</span>thentic
@@ -76,7 +96,7 @@ export function FooterSection() {
           </motion.div>
         </motion.div>
 
-        <motion.div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between" variants={itemVariants}>
+        <motion.div className={bottomClassName} variants={itemVariants}>
           <p>© {currentYear} Aithentic. All rights reserved.</p>
           <p>Built for modern search, AI discovery, and measurable growth.</p>
         </motion.div>
