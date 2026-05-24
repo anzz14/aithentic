@@ -1073,6 +1073,23 @@ button {
     text-transform: uppercase;
   }
 
+  .seo-kicker__icon,
+  .seo-trust__icon {
+    color: var(--color-accent);
+    display: inline-block;
+    vertical-align: -0.125em;
+    margin-right: 0.45rem;
+  }
+
+  .seo-hero__trust {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    align-items: center;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+
   .seo-hero__title {
     margin: 0.8rem 0 0;
     font-family: var(--font-syne), Arial, Helvetica, sans-serif;
@@ -1238,14 +1255,15 @@ button {
   .seo-section {
     width: min(100%, 75rem);
     margin: 0 auto;
-    padding-top: clamp(1.5rem, 3vw, 2.25rem);
-    padding-bottom: clamp(1rem, 2.5vw, 1.6rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-bottom: clamp(1.6rem, 3.2vw, 2.4rem);
   }
 
   .seo-section__title {
     margin: 0 0 1rem;
     font-family: var(--font-syne), Arial, Helvetica, sans-serif;
     font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 800;
     letter-spacing: -0.03em;
   }
 
@@ -1286,6 +1304,7 @@ button {
     color: var(--color-text);
     font-family: var(--font-syne), Arial, Helvetica, sans-serif;
     font-size: clamp(1.35rem, 2.6vw, 1.95rem);
+    font-weight: 800;
     line-height: 1.08;
     letter-spacing: -0.04em;
   }
@@ -1350,7 +1369,7 @@ button {
     margin: 0;
     color: var(--color-accent);
     font-family: var(--font-syne), Arial, Helvetica, sans-serif;
-    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
     font-weight: 800;
   }
 
@@ -1439,6 +1458,7 @@ button {
   .seo-overview__card h3 {
     margin: 0 0 0.7rem;
     font-size: 1rem;
+    font-weight: 800;
   }
 
   .seo-overview__serviceGrid {
@@ -1571,7 +1591,7 @@ button {
     color: var(--color-text);
     font-family: var(--font-syne), Arial, Helvetica, sans-serif;
     font-size: clamp(1.05rem, 2vw, 1.28rem);
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.03em;
   }
 
@@ -1648,7 +1668,7 @@ button {
     color: var(--color-text);
     font-family: var(--font-syne), Arial, Helvetica, sans-serif;
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.02em;
   }
 
@@ -1765,6 +1785,7 @@ button {
   .seo-timeline__step h3 {
     margin: 0.6rem 0 0;
     font-size: 0.95rem;
+    font-weight: 800;
   }
 
   .seo-timeline__step p {
@@ -1782,6 +1803,7 @@ button {
     margin: 0;
     color: rgba(255, 255, 255, 0.92);
     font-size: 0.9rem;
+    font-weight: 800;
   }
 
   .seo-results__result {
@@ -1814,6 +1836,21 @@ button {
     border: 1px solid rgba(255, 255, 255, 0.12);
     background: rgba(255, 255, 255, 0.04);
     font-size: 0.84rem;
+    cursor: pointer;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .seo-tools__item:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(249, 115, 22, 0.24);
   }
 
   .seo-faq {
@@ -1823,12 +1860,31 @@ button {
 
   .seo-faq__item {
     padding: 0.8rem 0.95rem;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .seo-faq__item:hover {
+    border-color: rgba(249, 115, 22, 0.65);
+    background:
+      radial-gradient(circle at top right, rgba(249, 115, 22, 0.16), transparent 42%),
+      rgba(255, 255, 255, 0.05);
+    box-shadow: 0 14px 28px rgba(249, 115, 22, 0.12);
+    transform: translateY(-1px);
   }
 
   .seo-faq__item summary {
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 800;
     color: rgba(255, 255, 255, 0.94);
+    transition: color 180ms ease;
+  }
+
+  .seo-faq__item:hover summary {
+    color: color-mix(in srgb, var(--color-accent) 90%, white);
   }
 
   .seo-faq__item p {

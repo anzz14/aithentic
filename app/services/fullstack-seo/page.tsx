@@ -8,6 +8,8 @@ import {
   BarChart3,
   Bot,
   Gauge,
+  Rocket,
+  Star,
   LayoutGrid,
   LineChart,
   ChevronDown,
@@ -201,7 +203,7 @@ export default function FullstackSeoPage() {
       <section className="seo-hero">
         <div className="seo-hero__inner">
           <div className="seo-hero__copy">
-            <p className="seo-kicker">🚀 Full-Stack SEO Services</p>
+            <p className="seo-kicker"><Rocket className="seo-kicker__icon" size={18} aria-hidden="true" /> Full-Stack SEO Services</p>
             <h1 className="seo-hero__title">Increase Organic Traffic, Rankings & AI Search Visibility</h1>
             <p className="seo-hero__subtitle">
               We help businesses grow through technical SEO, AI search optimization, strategic
@@ -216,9 +218,9 @@ export default function FullstackSeoPage() {
               </button>
             </div>
             <div className="seo-hero__trust" aria-label="Trust indicators">
-              <span>⭐ 100+ Projects</span>
-              <span>📈 Millions of Organic Impressions</span>
-              <span>🔍 AI + Search Engine Optimization</span>
+              <span><Star className="seo-trust__icon" size={14} aria-hidden="true" /> 100+ Projects</span>
+              <span><BarChart3 className="seo-trust__icon" size={14} aria-hidden="true" /> Millions of Organic Impressions</span>
+              <span><Bot className="seo-trust__icon" size={14} aria-hidden="true" /> AI + Search Engine Optimization</span>
             </div>
           </div>
 
