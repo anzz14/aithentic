@@ -2,31 +2,44 @@
 
 import type { CSSProperties } from "react";
 import { motion, useInView } from "framer-motion";
+import { Compass, LineChart, Radar, Rocket } from "lucide-react";
 import { useRef } from "react";
 
 const steps = [
   {
+    phase: "Understand",
     title: "Discovery & Audit",
     description:
-      "We identify what’s limiting your visibility, where opportunities are being missed, and what’s actually driving growth in your market.",
-    tags: ["Audit", "Opportunity Mapping"],
+      "We map your current funnel and find exactly where search visibility leaks happen.",
+    outcomes: ["SEO + content audit", "Competitor gap map", "High-impact quick wins"],
+    icon: Radar,
+    tags: ["Audit", "Insights"],
   },
   {
+    phase: "Plan",
     title: "Setting The Direction",
     description:
-      "We create a 90-day roadmap where every action has a clear growth direction backed by search data, audience behavior, competitor gaps, and platform trends.",
+      "We turn findings into a focused 90-day growth roadmap with clear priorities.",
+    outcomes: ["Priority matrix", "Content roadmap", "Measurement framework"],
+    icon: Compass,
     tags: ["Roadmap", "Search Data"],
   },
   {
+    phase: "Build",
     title: "Execution",
     description:
-      "We take approval and execute whatever the plan calls for. Execution with strategy means everything goes in the right direction.",
+      "Your strategy gets executed across technical, content, and conversion layers in sync.",
+    outcomes: ["Technical SEO fixes", "Optimized pages", "On-page + CRO updates"],
+    icon: Rocket,
     tags: ["Execution", "Strategy"],
   },
   {
+    phase: "Scale",
     title: "Scaling What Works",
     description:
-      "We stick around to track performance, improving weak points, and doubling down on what brings traffic, leads, and revenue.",
+      "We track what drives traffic and revenue, then double down on proven winners.",
+    outcomes: ["Weekly insights", "Iteration sprints", "Growth compounding"],
+    icon: LineChart,
     tags: ["Scale", "Performance"],
   },
 ];
@@ -76,7 +89,7 @@ export function ProcessSection() {
           <span className="process__introKicker">A smarter path to growth</span>
           <h2 className="process__title">A clear flow from audit to scale.</h2>
           <p className="process__subtitle">
-            Every stage feeds the next one, so your strategy, execution, and results stay aligned
+            Every stage feeds the next one, so our strategy, execution, and results stay aligned
             as a single growth system.
           </p>
         </motion.div>
@@ -90,13 +103,28 @@ export function ProcessSection() {
                 className="process-flow__node"
                 style={{ ["--step-accent" as const]: stepAccents[index] } as CSSProperties}
               >
+                <div className="process-flow__glow" aria-hidden="true" />
+
                 <div className="process-flow__top">
+                  <span className="process-flow__phase">{step.phase}</span>
                   <span className="process-flow__number">{String(index + 1).padStart(2, "0")}</span>
+                </div>
+
+                <div className="process-flow__meta">
+                  <span className="process-flow__iconWrap" aria-hidden="true">
+                    <step.icon size={16} strokeWidth={2.1} />
+                  </span>
                   <span className="process-flow__step">Step</span>
                 </div>
 
                 <h3 className="process-flow__heading">{step.title}</h3>
                 <p className="process-flow__description">{step.description}</p>
+
+                <ul className="process-flow__outcomes" aria-label={`${step.title} outcomes`}>
+                  {step.outcomes.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
 
                 <div className="process-flow__tags">
                   {step.tags.map((tag) => (

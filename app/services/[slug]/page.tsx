@@ -9,7 +9,9 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-	return serviceCards.map((service) => ({ slug: service.slug }));
+	return serviceCards
+		.filter((service) => service.slug !== "fullstack-seo")
+		.map((service) => ({ slug: service.slug }));
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {
