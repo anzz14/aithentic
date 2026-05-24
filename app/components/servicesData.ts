@@ -148,4 +148,67 @@ export const serviceCards: readonly ServiceCard[] = [
       cta: "Define Brand Strategy",
     },
   },
+  {
+    slug: "social-media-management",
+    title: "Social Media Management",
+    description:
+      "From daily content to platform strategy, we manage social media with a focus on visibility, engagement, and brand recall.",
+    bullets: ["Content Strategy", "Reels & Creatives", "Platform Management"],
+    iconKey: "megaphone",
+    detail: {
+      content:
+        "From daily content to platform strategy, we manage social media with a focus on visibility, engagement, and brand recall.",
+      features: [
+        "Content Strategy",
+        "Reels & Creatives",
+        "Platform Management",
+        "Community Engagement",
+        "Content Calendar Planning",
+        "Performance Insights",
+      ],
+      cta: "Scale Social Presence",
+    },
+  },
+  {
+    slug: "website-development",
+    title: "Website Development",
+    description:
+      "Fast, conversion-focused websites built for AI era to support rankings, improve user experience, and turn traffic into qualified leads.",
+    bullets: ["Custom Websites", "Conversion UX", "Speed Optimization"],
+    iconKey: "layoutGrid",
+    detail: {
+      content:
+        "Fast, conversion-focused websites built for AI era to support rankings, improve user experience, and turn traffic into qualified leads.",
+      features: [
+        "Custom Websites",
+        "Conversion UX",
+        "Speed Optimization",
+        "Technical SEO Foundations",
+        "Responsive Development",
+        "Lead-Focused Page Architecture",
+      ],
+      cta: "Build Your Website",
+    },
+  },
+  {
+    slug: "ai-content-creation",
+    title: "AI Content Creation",
+    description:
+      "We help brands scale content production through AI-assisted creative systems for social media, advertising, branding, and audience engagement.",
+    bullets: ["AI Video Content", "Social Media Creatives", "Short-Form Content"],
+    iconKey: "sparkles",
+    detail: {
+      content:
+        "We help brands scale content production through AI-assisted creative systems for social media, advertising, branding, and audience engagement.",
+      features: [
+        "AI Video Content",
+        "Social Media Creatives",
+        "Short-Form Content",
+        "Creative Prompt Systems",
+        "Brand-Safe Content Templates",
+        "Multi-Platform Repurposing",
+      ],
+      cta: "Scale AI Content",
+    },
+  },
 ];
