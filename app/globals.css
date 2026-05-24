@@ -824,15 +824,29 @@ button {
   .service-card__link {
     position: relative;
     display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-top: 1.3rem;
-    color: var(--color-muted);
+    padding: 0.55rem 0.85rem;
+    border-radius: var(--radius-full);
+    color: var(--color-accent);
+    background: transparent;
+    border: 1px solid rgba(249, 115, 22, 0.35);
     font-size: 0.875rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: color 180ms ease;
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    will-change: transform;
+  }
+
+  .service-card__link:hover {
+    transform: translateY(-1px);
   }
 
   .service-card:hover .service-card__link {
     color: var(--color-text);
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
   }
 
   @media (max-width: 960px) {

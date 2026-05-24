@@ -40,7 +40,7 @@ export function VisibilityBoostSection() {
         <motion.div className="visibility-boost__media" aria-hidden="true" variants={itemVariants}>
           <img
             className="visibility-boost__image"
-            src="/Untitled%20design%20(2).svg"
+            src="/Untitled%20design%20(14).png"
             alt=""
             loading="lazy"
           />

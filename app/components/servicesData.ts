@@ -23,8 +23,8 @@ export type ServiceCard = {
 
 export const serviceCards: readonly ServiceCard[] = [
   {
-    slug: "technical-seo",
-    title: "Technical SEO",
+    slug: "fullstack-seo",
+    title: "Fullstack SEO",
     description:
       "We optimize your website infrastructure to improve crawlability, indexing, speed, and search engine performance.",
     bullets: ["Site Architecture", "Core Web Vitals", "Schema Markup"],
@@ -40,12 +40,12 @@ export const serviceCards: readonly ServiceCard[] = [
         "Mobile Optimization",
         "Crawl Error Fixes",
       ],
-      cta: "Request Technical Audit",
+      cta: "Request SEO Audit",
     },
   },
   {
-    slug: "ai-search-optimization",
-    title: "AI Search Optimization",
+    slug: "ai-so",
+    title: "AI SO",
     description:
       "Modern search is changing. We optimize your brand for AI-driven search engines, answer engines, and generative experiences.",
     bullets: ["AI Search Visibility", "AEO", "GEO"],
