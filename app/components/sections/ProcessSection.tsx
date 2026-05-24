@@ -72,60 +72,50 @@ export function ProcessSection() {
           <span className="process__eyebrow">OUR PROCESS</span>
         </motion.div>
 
-        <div className="process__layout">
-          <motion.aside className="process__intro" variants={itemVariants}>
-            <span className="process__introKicker">A smarter path to growth</span>
-            <h2 className="process__title">We turn ambiguity into a clear operating rhythm.</h2>
-            <p className="process__subtitle">
-              Helping brands move from scattered ideas to a disciplined plan that keeps decisions,
-              execution, and iteration aligned.
-            </p>
+        <motion.div className="process__header" variants={itemVariants}>
+          <span className="process__introKicker">A smarter path to growth</span>
+          <h2 className="process__title">A clear flow from audit to scale.</h2>
+          <p className="process__subtitle">
+            Every stage feeds the next one, so your strategy, execution, and results stay aligned
+            as a single growth system.
+          </p>
+        </motion.div>
 
-            <div className="process__highlights" aria-label="Process priorities">
-              <div className="process__highlight">
-                <span className="process__highlightValue">01</span>
-                <span className="process__highlightLabel">Research-led</span>
-              </div>
-              <div className="process__highlight">
-                <span className="process__highlightValue">02</span>
-                <span className="process__highlightLabel">Fast approvals</span>
-              </div>
-              <div className="process__highlight">
-                <span className="process__highlightValue">03</span>
-                <span className="process__highlightLabel">Continuous lift</span>
-              </div>
-            </div>
-          </motion.aside>
+        <motion.div className="process-flow" aria-label="Project delivery process" variants={containerVariants}>
+          <span className="process-flow__lane" aria-hidden="true" />
 
-          <motion.div className="process__steps" aria-label="Project delivery process" variants={containerVariants}>
-            {steps.map((step, index) => (
-              <motion.article
-                key={step.title}
-                className="process-card"
-                data-process-step
+          {steps.map((step, index) => (
+            <motion.div key={step.title} className="process-flow__item" variants={itemVariants}>
+              <article
+                className="process-flow__node"
                 style={{ ["--step-accent" as const]: stepAccents[index] } as CSSProperties}
-                variants={itemVariants}
               >
-                <div className="process-card__top">
-                  <span className="process-card__number">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="process-card__line" aria-hidden="true" />
-                  <span className="process-card__step">Step</span>
+                <div className="process-flow__top">
+                  <span className="process-flow__number">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="process-flow__step">Step</span>
                 </div>
 
-                <h3 className="process-card__heading">{step.title}</h3>
-                <p className="process-card__description">{step.description}</p>
+                <h3 className="process-flow__heading">{step.title}</h3>
+                <p className="process-flow__description">{step.description}</p>
 
-                <div className="process-card__tags">
+                <div className="process-flow__tags">
                   {step.tags.map((tag) => (
-                    <span key={tag} className="process-card__tag">
+                    <span key={tag} className="process-flow__tag">
                       {tag}
                     </span>
                   ))}
                 </div>
-              </motion.article>
-            ))}
-          </motion.div>
-        </div>
+              </article>
+
+              {index < steps.length - 1 ? (
+                <div className="process-flow__connector" aria-hidden="true">
+                  <span className="process-flow__connectorLine" />
+                  <span className="process-flow__connectorArrow" />
+                </div>
+              ) : null}
+            </motion.div>
+          ))}
+        </motion.div>
       </motion.div>
     </motion.section>
   );
