@@ -13,7 +13,7 @@ type ServiceDetailContentProps = {
 const SEO_SERVICE_SLUGS = new Set([
   "fullstack-seo",
   "ai-so",
-  "content-seo",
+  "content-writing",
 ]);
 
 export function ServiceDetailContent({ service }: ServiceDetailContentProps) {

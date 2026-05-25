@@ -330,32 +330,48 @@ export default function FullstackSeoPage() {
       <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
         <motion.h2 className="seo-section__title" variants={itemVariants}>Complete SEO Solutions for Modern Search</motion.h2>
         <motion.div className="seo-overview__serviceGrid" variants={sectionVariants}>
-          {overviewCards.map((card) => (
-            <motion.article
-              key={card.title}
-              className="service-card seo-overview__serviceCard"
-              style={{ ["--service-accent" as const]: "#F97316" } as CSSProperties}
-              variants={itemVariants}
-              whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-            >
-              <div className="service-card__glow" aria-hidden="true" />
-              <div className="seo-overview__titleRow">
-                <h3 className="service-card__title">{card.title}</h3>
-                <span className="service-card__iconWrap" aria-hidden="true">
-                  <card.icon size={18} strokeWidth={2.15} />
-                </span>
+          {overviewCards.map((card) => {
+            const cardEl = (
+              <motion.article
+                className="service-card seo-overview__serviceCard"
+                style={{ ["--service-accent" as const]: "#F97316" } as CSSProperties}
+                variants={itemVariants}
+                whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+              >
+                <div className="service-card__glow" aria-hidden="true" />
+                <div className="seo-overview__titleRow">
+                  <h3 className="service-card__title">{card.title}</h3>
+                  <span className="service-card__iconWrap" aria-hidden="true">
+                    <card.icon size={18} strokeWidth={2.15} />
+                  </span>
+                </div>
+                <p className="service-card__description">{card.description}</p>
+                <ul className="service-card__features">
+                  {card.items.map((item) => (
+                    <li key={item} className="service-card__feature">
+                      <span className="service-card__dot" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
+            );
+
+            // Make the Content SEO card navigate to the Content Writing page
+            if (card.title === "Content SEO") {
+              return (
+                <Link key={card.title} href="/services/content-writing">
+                  {cardEl}
+                </Link>
+              );
+            }
+
+            return (
+              <div key={card.title}>
+                {cardEl}
               </div>
-              <p className="service-card__description">{card.description}</p>
-              <ul className="service-card__features">
-                {card.items.map((item) => (
-                  <li key={item} className="service-card__feature">
-                    <span className="service-card__dot" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.article>
-          ))}
+            );
+          })}
         </motion.div>
       </motion.section>
 

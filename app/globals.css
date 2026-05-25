@@ -3154,7 +3154,8 @@ button {
       box-shadow 300ms ease;
   }
 
-  .why-us-card:hover {
+  .why-us-card:hover,
+  .why-us-card:focus-within {
     transform: translateY(-4px);
     border-color: rgba(249, 115, 22, 0.3);
     box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1);

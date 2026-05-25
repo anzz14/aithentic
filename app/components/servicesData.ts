@@ -65,7 +65,7 @@ export const serviceCards: readonly ServiceCard[] = [
     },
   },
   {
-    slug: "content-seo",
+    slug: "content-writing",
     title: "Content SEO",
     description:
       "Build topical authority and attract high-intent traffic with strategic SEO content systems.",

@@ -110,18 +110,18 @@ export function WhyUsSection() {
             {values.map((value) => (
               <motion.article
                 key={value.title}
-                className="group flex h-36 items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-md lg:h-40"
+                className="why-us-card group flex h-36 items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-md lg:h-40"
                 variants={itemVariants}
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.9rem] border border-white/10 bg-white/6 text-orange-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <span className="why-us-card__iconWrap flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.9rem] border border-white/10 bg-white/6 text-orange-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
                   <value.icon size={14} strokeWidth={2.2} />
                 </span>
 
-                <div className="grid gap-1 pt-0.5">
-                  <h3 className="text-[0.98rem] font-bold leading-tight text-white" style={{ fontFamily: "var(--font-syne)" }}>
+                <div className="why-us-card__body grid gap-1 pt-0.5">
+                  <h3 className="why-us-card__title text-[0.98rem] font-bold leading-tight text-white" style={{ fontFamily: "var(--font-syne)" }}>
                     {value.title}
                   </h3>
-                  <p className="text-sm leading-7 text-slate-400">{value.description}</p>
+                  <p className="why-us-card__description text-sm leading-7 text-slate-400">{value.description}</p>
                 </div>
               </motion.article>
             ))}
