@@ -1094,6 +1094,7 @@ button {
     margin: 0.8rem 0 0;
     font-family: var(--font-syne), Arial, Helvetica, sans-serif;
     font-size: clamp(2rem, 4.8vw, 3.4rem);
+    font-weight: 800;
     line-height: 1.03;
     letter-spacing: -0.04em;
     text-wrap: balance;
