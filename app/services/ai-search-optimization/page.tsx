@@ -1,19 +1,19 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import {
-  Smartphone,
-  Calendar,
-  Users,
-  MessageCircle,
+  Bot,
   BarChart3,
-  Video,
-  Target,
   ChevronDown,
+  Globe,
+  Network,
+  Radar,
+  Search,
+  Sparkles,
   Star,
 } from "lucide-react";
 
@@ -22,139 +22,163 @@ import { ContactModal } from "../../components/ContactModal";
 import { FooterSection } from "../../components/sections/FooterSection";
 
 const stats = [
-  { value: "Millions+", label: "Social Impressions Generated" },
-  { value: "+45%", label: "Increased Engagement Rates" },
-  { value: "Consistent", label: "Audience Growth" },
-  { value: "Multi-Industry", label: "Social Media Experience" },
+  { value: "20+", label: "AI Search Mentions Improved" },
+  { value: "100+", label: "Brand Citations Across AI Platforms" },
+  { value: "Higher", label: "Increased Organic Discovery Opportunities" },
+  { value: "Multi-Industry", label: "Multi-Industry AI Search Experience" },
 ] as const;
 
 const pains = [
-  "Inconsistent posting schedules",
-  "Low engagement rates",
-  "Poor content quality",
-  "Weak brand positioning",
-  "Lack of strategy and direction",
-  "Difficulty generating leads and sales",
+  "No visibility in AI-generated answers",
+  "Weak entity recognition signals",
+  "Low authority across trusted sources",
+  "Poor content structure for AI systems",
+  "Inconsistent brand information online",
+  "Overreliance on traditional SEO strategies",
 ] as const;
 
 const overviewCards = [
   {
-    title: "Social Media Strategy",
-    description: "Audience research, competitor analysis, content planning and growth roadmap development.",
-    icon: Target,
-    items: ["Audience research", "Competitor analysis", "Content planning", "Growth strategy development"],
+    title: "Answer Engine Optimization (AEO)",
+    description: "Answer-focused content creation, FAQ optimization, structured information architecture, and featured answer opportunities.",
+    icon: Search,
+    items: ["Answer-focused content creation", "FAQ optimization", "Structured information architecture", "Featured answer opportunities"],
   },
   {
-    title: "Content Creation",
-    description: "Platform-specific content: static posts, carousels, reels and branded creatives.",
-    icon: Smartphone,
-    items: ["Static posts", "Carousels", "Reels & short-form videos", "Branded creatives"],
+    title: "Generative Engine Optimization (GEO)",
+    description: "AI recommendation strategies, brand mention optimization, AI visibility improvement, and generative search positioning.",
+    icon: Bot,
+    items: ["AI recommendation strategies", "Brand mention optimization", "AI visibility improvement", "Generative search positioning"],
   },
   {
-    title: "Social Media Management",
-    description: "Scheduling, publishing workflows and account optimization to keep channels consistent.",
-    icon: Calendar,
-    items: ["Content scheduling", "Account management", "Publishing workflows", "Platform optimization"],
+    title: "Entity Optimization",
+    description: "Brand entity development, knowledge graph alignment, digital authority signals, and entity consistency management.",
+    icon: Network,
+    items: ["Brand entity development", "Knowledge graph alignment", "Digital authority signals", "Entity consistency management"],
   },
   {
-    title: "Community Management",
-    description: "Audience engagement, comment management and message responses to build community.",
-    icon: Users,
-    items: ["Audience engagement", "Comment management", "Message responses", "Community building"],
+    title: "Authority Content Development",
+    description: "Expert-led content creation, topical authority building, content clusters, and research-backed resources.",
+    icon: Sparkles,
+    items: ["Expert-led content creation", "Topical authority building", "Content clusters", "Research-backed resources"],
   },
   {
-    title: "Performance Analytics",
-    description: "Reach tracking, engagement analysis and monthly reporting to inform creative decisions.",
+    title: "Citation & Mention Building",
+    description: "Digital PR opportunities, industry publication mentions, authority source placements, and trust signal enhancement.",
+    icon: Globe,
+    items: ["Digital PR opportunities", "Industry publication mentions", "Authority source placements", "Trust signal enhancement"],
+  },
+  {
+    title: "AI Search Analytics & Reporting",
+    description: "AI visibility tracking, mention monitoring, authority signal measurement, and performance reporting.",
     icon: BarChart3,
-    items: ["Reach tracking", "Engagement analysis", "Audience insights", "Monthly reporting"],
-  },
-  {
-    title: "Paid Campaign Support",
-    description: "Campaign planning, audience targeting and performance monitoring for paid growth.",
-    icon: Video,
-    items: ["Campaign planning", "Creative recommendations", "Audience targeting", "Performance monitoring"],
+    items: ["AI visibility tracking", "Mention monitoring", "Authority signal measurement", "Performance reporting"],
   },
 ] as const;
 
 const detailSections = [
   {
-    title: "Social Media Strategy",
+    title: "Answer Engine Optimization (AEO)",
     content:
-      "Successful social media growth starts with a clear strategy. Our process identifies the right audience, platforms, content themes, and growth opportunities to create a roadmap for sustainable success.",
+      "Answer engines prioritize content that directly addresses user questions in a trustworthy format. Our AEO services help businesses create and optimize content that search engines can easily understand, extract, and surface within AI-generated responses.",
     features: [
-      "Audience Research",
-      "Competitor Analysis",
-      "Platform Selection",
-      "Content Pillars Development",
-      "Brand Positioning Strategy",
-      "Growth Roadmap Creation",
+      "Question-Based Content Strategy",
+      "FAQ Optimization",
+      "Structured Content Formatting",
+      "Semantic Search Optimization",
+      "Featured Answer Opportunities",
+      "Search Intent Mapping",
     ],
-    cta: "Build My Social Strategy",
+    cta: "Improve Answer Engine Visibility",
   },
   {
-    title: "Content Creation & Creative Production",
+    title: "Generative Engine Optimization (GEO)",
     content:
-      "Content is the foundation of every successful social presence. We create platform-specific content to capture attention and encourage engagement.",
+      "Generative AI platforms generate recommendations. Our GEO framework strengthens your digital footprint to help AI systems recognize your brand as a trusted source within your industry.",
     features: [
-      "Static Graphics",
-      "Carousel Design",
-      "Reel Production",
-      "Video Editing",
-      "Caption Writing",
-      "Content Calendar Planning",
+      "AI Visibility Audits",
+      "Brand Mention Optimization",
+      "Competitive AI Search Analysis",
+      "Authority Signal Development",
+      "AI Recommendation Strategies",
+      "Generative Search Monitoring",
     ],
-    cta: "Create Better Content",
+    cta: "Improve AI Recommendations",
   },
   {
-    title: "Social Media Management & Growth",
+    title: "Entity Optimization",
     content:
-      "Managing social media is more than publishing — we handle scheduling, engagement, monitoring and continuous optimization to keep your brand visible.",
+      "AI systems rely heavily on entity understanding to determine which brands, people, products, and organizations deserve visibility. We help build stronger entity relationships that improve recognition within AI search ecosystems and knowledge graphs.",
     features: [
-      "Content Scheduling",
-      "Publishing Management",
-      "Community Engagement",
-      "Direct Message Management",
-      "Trend Monitoring",
-      "Ongoing Optimization",
+      "Brand Entity Development",
+      "Entity Consistency Audits",
+      "Knowledge Graph Optimization",
+      "Digital Footprint Expansion",
+      "Authority Signal Alignment",
+      "Cross-Platform Consistency",
     ],
-    cta: "Grow My Social Presence",
+    cta: "Strengthen Brand Authority",
+  },
+  {
+    title: "AI Authority Content Development",
+    content:
+      "AI search rewards expertise. Our content strategies focus on building topical authority through expert resources, thought leadership, original insights, research-backed content, and comprehensive topic coverage.",
+    features: [
+      "Topic Cluster Development",
+      "Authority Content Creation",
+      "Research-Based Articles",
+      "Expert-Led Resources",
+      "Knowledge Hub Development",
+      "Content Expansion Strategies",
+    ],
+    cta: "Build Topical Authority",
   },
 ] as const;
 
-const processSteps = ["Audit & Research", "Strategy Development", "Content Creation & Publishing", "Optimization & Growth"] as const;
+const processSteps = ["AI Visibility Audit", "Entity & Authority Analysis", "Optimization & Content Development", "Monitoring & Growth"] as const;
 
 const processDescriptions = [
-  "Analyzing current social performance, audience behavior, competitors, and content opportunities.",
-  "Creating platform-specific growth strategies, content pillars, and engagement plans.",
-  "Producing, approving, scheduling, and publishing content consistently.",
-  "Tracking performance, identifying opportunities, and continuously improving results.",
+  "Analyzing current brand visibility across ChatGPT, Gemini, Perplexity, Claude, AI Overviews, and other answer engines.",
+  "Evaluating brand authority signals, citations, content quality, and entity recognition opportunities.",
+  "Implementing AEO, GEO, entity optimization, and authority-building strategies.",
+  "Tracking visibility improvements, AI mentions, citations, and recommendation opportunities.",
 ] as const;
 
-const caseStudies = [
-  { brand: "DTC Brand", result: "+200% Engagement" },
-  { brand: "SaaS Company", result: "+3X Leads via Social" },
-  { brand: "Local Retailer", result: "Consistent Footfall Growth" },
-  { brand: "B2B Services", result: "+150% Brand Mentions" },
-] as const;
+const platforms = ["ChatGPT", "Google AI Overviews", "Gemini", "Grok AI", "Claude", "Perplexity", "Microsoft Copilot"] as const;
 
-const platforms = ["Instagram", "LinkedIn", "Facebook", "YouTube", "X", "TikTok"] as const;
+const industries = [
+  "SaaS Companies",
+  "Taxation",
+  "Healthcare Brands",
+  "Finance Businesses",
+  "Real Estate Businesses",
+  "CA/CPA Firms",
+  "eCommerce Stores",
+  "Professional Services",
+] as const;
 
 const tools = [
-  "Meta Business Suite",
-  "Buffer",
-  "Canva",
-  "Adobe Creative Suite",
+  "ChatGPT",
+  "Gemini",
+  "Claude",
+  "Perplexity",
+  "Google Search Console",
+  "Semrush",
+  "Ahrefs",
+  "Schema Markup Tools",
   "Google Analytics",
-  "Notion",
+  "Knowledge Graph APIs",
 ] as const;
 
 const faqs = [
-  { q: "Which social media platforms should my business focus on?", a: "We recommend focusing on platforms where your audience is most active; we can help identify the right mix." },
-  { q: "How often should we post content?", a: "Posting frequency depends on your goals and resources — we typically recommend a consistent weekly cadence tailored per platform." },
-  { q: "Do you create reels and video content?", a: "Yes. We produce short-form video, reels, and other native formats optimized for each platform." },
-  { q: "Can social media generate leads for my business?", a: "Yes. With the right strategy and creative, social media can be a reliable lead channel when paired with conversion-focused funnels." },
-  { q: "How long does it take to see results?", a: "Most clients begin to see engagement improvements within 6-12 weeks, with compounding growth over months." },
-  { q: "Do you provide monthly performance reports?", a: "Yes — we provide clear monthly reports covering reach, engagement, growth, and actionable recommendations." },
+  { q: "What is AI Search Optimization (AISO)?", a: "AISO improves how AI systems understand, cite, and recommend your brand across answer engines and generative platforms." },
+  { q: "How is AISO different from traditional SEO?", a: "AISO goes beyond ranking pages and focuses on entity signals, answer readiness, and AI recommendation visibility." },
+  { q: "What is Answer Engine Optimization (AEO)?", a: "AEO structures content so AI systems can extract direct answers from it." },
+  { q: "What is Generative Engine Optimization (GEO)?", a: "GEO helps your brand show up in AI-generated recommendations by improving trust, authority, and mention signals." },
+  { q: "Can AI search generate leads and customers?", a: "Yes. When your brand is visible in AI recommendations and citations, it can create qualified discovery and lead opportunities." },
+  { q: "How do you measure AI search visibility?", a: "We track mentions, citations, recommendation appearances, authority signals, platform visibility, and reporting over time." },
+  { q: "Which AI platforms do you optimize for?", a: "We optimize for ChatGPT, Google AI Overviews, Gemini, Grok AI, Claude, Perplexity, and Microsoft Copilot." },
+  { q: "How long does it take to see results?", a: "Some improvements can appear within weeks, while stronger authority and recommendation gains usually build over months." },
 ] as const;
 
 const sectionVariants = {
@@ -179,7 +203,7 @@ const itemVariants = {
   },
 };
 
-export default function FullstackSeoPage() {
+export default function AiSearchOptimizationPage() {
   const [isAuditOpen, setIsAuditOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const pageRef = useRef<HTMLElement | null>(null);
@@ -193,32 +217,32 @@ export default function FullstackSeoPage() {
         <motion.div className="seo-hero__inner" variants={itemVariants}>
           <motion.div className="seo-hero__copy" variants={sectionVariants}>
             <motion.p className="seo-kicker" variants={itemVariants}>
-              <Smartphone className="seo-kicker__icon" size={18} aria-hidden="true" /> Social Media Management Services
+              <Radar className="seo-kicker__icon" size={18} aria-hidden="true" /> AI Search Optimization (AISO) Services
             </motion.p>
-            <motion.h1 className="seo-hero__title" variants={itemVariants}>Build a Stronger Brand Presence and Drive Consistent Growth on Social Media</motion.h1>
+            <motion.h1 className="seo-hero__title" variants={itemVariants}>Get Your Brand Recommended by AI Search Engines</motion.h1>
             <motion.p className="seo-hero__subtitle" variants={itemVariants}>
-              We help businesses grow through strategic social media management, content creation, audience engagement, and performance-driven campaigns that increase visibility, build trust, and generate measurable business results.
+              Search is changing. Users are moving to ChatGPT, Gemini, Claude, Perplexity, AI Overviews, and other answer engines instead of traditional search results. Our AI Search Optimization services help brands improve visibility across every AI-powered platform.
             </motion.p>
             <motion.div className="seo-hero__actions" variants={itemVariants}>
               <button className="seo-btn seo-btn--primary" type="button" onClick={() => setIsAuditOpen(true)}>
-                Get Social Media Audit
+                Get AI Visibility Audit
               </button>
               <button className="seo-btn seo-btn--ghost" type="button" onClick={() => setIsContactOpen(true)}>
-                Grow My Brand
+                Improve AI Rankings
               </button>
             </motion.div>
             <motion.div className="seo-hero__trust" aria-label="Trust indicators" variants={itemVariants}>
-              <span><Star className="seo-trust__icon" size={14} aria-hidden="true" /> Consistent Audience Growth</span>
-              <span><Target className="seo-trust__icon" size={14} aria-hidden="true" /> Strategy-Driven Content</span>
-              <span><Users className="seo-trust__icon" size={14} aria-hidden="true" /> Multi-Platform Social Expertise</span>
+              <span><Star className="seo-trust__icon" size={14} aria-hidden="true" /> AI Search Expertise</span>
+              <span><BarChart3 className="seo-trust__icon" size={14} aria-hidden="true" /> Visibility Across Answer Engines</span>
+              <span><Sparkles className="seo-trust__icon" size={14} aria-hidden="true" /> Future-Proof Search Strategy</span>
             </motion.div>
           </motion.div>
 
           <motion.div className="seo-hero__visual" aria-hidden="true" variants={itemVariants}>
             <motion.div className="seo-dashboard" animate={prefersReducedMotion ? undefined : { y: [0, -6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}>
               <div className="seo-dashboard__row">
-                <BarChart3 size={16} />
-                <span>Engagement Dashboard</span>
+                <Bot size={16} />
+                <span>AI Recommendation Dashboard</span>
               </div>
               <motion.div className="seo-dashboard__graph" animate={prefersReducedMotion ? undefined : { opacity: [0.88, 1, 0.88] }} transition={prefersReducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }} />
               <motion.div className="seo-dashboard__bars">
@@ -228,22 +252,21 @@ export default function FullstackSeoPage() {
                 <motion.span animate={prefersReducedMotion ? undefined : { scaleY: [1, 1.28, 1] }} transition={prefersReducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.6 }} />
               </motion.div>
             </motion.div>
-            <motion.div className="seo-float seo-float--one" animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><BarChart3 size={18} /> Reach</motion.div>
-            <motion.div className="seo-float seo-float--two" animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><Video size={18} /> Creative</motion.div>
-            <motion.div className="seo-float seo-float--three" animate={prefersReducedMotion ? undefined : { y: [0, -5, 0] }} transition={prefersReducedMotion ? undefined : { duration: 4.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><MessageCircle size={18} /> Engagement</motion.div>
+            <motion.div className="seo-float seo-float--one" animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><Bot size={18} /> ChatGPT</motion.div>
+            <motion.div className="seo-float seo-float--two" animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><Globe size={18} /> Gemini</motion.div>
+            <motion.div className="seo-float seo-float--three" animate={prefersReducedMotion ? undefined : { y: [0, -5, 0] }} transition={prefersReducedMotion ? undefined : { duration: 4.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><Radar size={18} /> Perplexity</motion.div>
           </motion.div>
         </motion.div>
       </motion.section>
 
       <motion.section className="seo-section seo-stats" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
-        <motion.h2 className="seo-section__title" variants={itemVariants}>SEO Stats / Social Proof</motion.h2>
+        <motion.h2 className="seo-section__title" variants={itemVariants}>Visibility Beyond Traditional Search</motion.h2>
         <motion.div className="seo-stats__layout" variants={sectionVariants}>
           <motion.article className="seo-stats__introCard" variants={itemVariants}>
             <p className="seo-stats__eyebrow">Proof that compounds</p>
-            <h3 className="seo-stats__introTitle">A compact snapshot of the organic growth we build.</h3>
+            <h3 className="seo-stats__introTitle">A compact snapshot of the AI visibility we build.</h3>
             <p className="seo-stats__introCopy">
-              These numbers are the baseline indicators we use to measure visibility, reach, and
-              traffic quality across search and AI discovery.
+              Premium dark glowing cards displaying AI citations, brand mentions, authority signals, and visibility growth metrics.
             </p>
           </motion.article>
 
@@ -266,7 +289,7 @@ export default function FullstackSeoPage() {
       </motion.section>
 
       <motion.section className="seo-section seo-problem" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
-        <motion.h2 className="seo-section__title" variants={itemVariants}>Why Most Websites Fail to Rank</motion.h2>
+        <motion.h2 className="seo-section__title" variants={itemVariants}>Why Most Brands Are Invisible In AI Search</motion.h2>
         <motion.div className="seo-problem__grid" variants={sectionVariants}>
           <motion.div variants={itemVariants}>
             <ul className="seo-list">
@@ -279,7 +302,7 @@ export default function FullstackSeoPage() {
             <Image
               className="seo-problem__image"
               src="/newadd.jpeg"
-              alt="Newadd visual for the SEO section"
+              alt="Traditional search transforming into AI-powered recommendations"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority={false}
@@ -289,41 +312,34 @@ export default function FullstackSeoPage() {
       </motion.section>
 
       <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
-        <motion.h2 className="seo-section__title" variants={itemVariants}>Complete Social Media Growth Solutions</motion.h2>
+        <motion.h2 className="seo-section__title" variants={itemVariants}>Complete AI Search Visibility Solutions</motion.h2>
         <motion.div className="seo-overview__serviceGrid" variants={sectionVariants}>
-          {overviewCards.map((card) => {
-            const cardEl = (
-              <motion.article
-                className="service-card seo-overview__serviceCard"
-                style={{ ["--service-accent" as const]: "#F97316" } as CSSProperties}
-                variants={itemVariants}
-                whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-              >
-                <div className="service-card__glow" aria-hidden="true" />
-                <div className="seo-overview__titleRow">
-                  <h3 className="service-card__title">{card.title}</h3>
-                  <span className="service-card__iconWrap" aria-hidden="true">
-                    <card.icon size={18} strokeWidth={2.15} />
-                  </span>
-                </div>
-                <p className="service-card__description">{card.description}</p>
-                <ul className="service-card__features">
-                  {card.items.map((item) => (
-                    <li key={item} className="service-card__feature">
-                      <span className="service-card__dot" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.article>
-            );
-
-            return (
-              <div key={card.title}>
-                {cardEl}
+          {overviewCards.map((card) => (
+            <motion.article
+              key={card.title}
+              className="service-card seo-overview__serviceCard"
+              style={{ ["--service-accent" as const]: "#7C3AED" } as CSSProperties}
+              variants={itemVariants}
+              whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+            >
+              <div className="service-card__glow" aria-hidden="true" />
+              <div className="seo-overview__titleRow">
+                <h3 className="service-card__title">{card.title}</h3>
+                <span className="service-card__iconWrap" aria-hidden="true">
+                  <card.icon size={18} strokeWidth={2.15} />
+                </span>
               </div>
-            );
-          })}
+              <p className="service-card__description">{card.description}</p>
+              <ul className="service-card__features">
+                {card.items.map((item) => (
+                  <li key={item} className="service-card__feature">
+                    <span className="service-card__dot" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.article>
+          ))}
         </motion.div>
       </motion.section>
 
@@ -371,8 +387,8 @@ export default function FullstackSeoPage() {
       </motion.section>
 
       <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
-        <motion.h2 className="seo-section__title" variants={itemVariants}>Our Social Growth Process</motion.h2>
-        <motion.div className="seo-timeline" aria-label="Horizontal timeline with glowing connection lines" variants={sectionVariants}>
+        <motion.h2 className="seo-section__title" variants={itemVariants}>Our AI Search Optimization Process</motion.h2>
+        <motion.div className="seo-timeline" aria-label="Connected AI ecosystem timeline" variants={sectionVariants}>
           {processSteps.map((step, index) => (
             <motion.article key={step} className="seo-timeline__step" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -3 }}>
               <div className="seo-timeline__dot" aria-hidden="true" />
@@ -384,24 +400,79 @@ export default function FullstackSeoPage() {
       </motion.section>
 
       <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
-        <motion.h2 className="seo-section__title" variants={itemVariants}>Real Social Results</motion.h2>
-        <motion.div className="seo-results__grid" variants={sectionVariants}>
-          {caseStudies.map((item) => (
-            <motion.article key={item.brand} className="seo-results__card" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -3 }}>
-              <p className="seo-results__brand">{item.brand}</p>
-              <p className="seo-results__result">{item.result}</p>
-              <div className="seo-results__chart" aria-hidden="true" />
+        <motion.h2 className="seo-section__title" variants={itemVariants}>Visibility Across Leading AI Search Platforms</motion.h2>
+        <motion.div className="seo-tools" variants={sectionVariants}>
+          {platforms.map((platform) => (
+            <motion.span key={platform} className="seo-tools__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}>
+              {platform}
+            </motion.span>
+          ))}
+        </motion.div>
+      </motion.section>
+
+      <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
+        <motion.h2 className="seo-section__title" variants={itemVariants}>AI Search Solutions Across Industries</motion.h2>
+        <motion.div className="seo-tools" variants={sectionVariants}>
+          {industries.map((industry) => (
+            <motion.span key={industry} className="seo-tools__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}>
+              {industry}
+            </motion.span>
+          ))}
+        </motion.div>
+      </motion.section>
+
+      <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
+        <motion.h2 className="seo-section__title" variants={itemVariants}>Why Brands Choose Our AISO Services</motion.h2>
+        <motion.div className="seo-overview__serviceGrid" variants={sectionVariants}>
+          {[
+            "Specialized AI Search Expertise",
+            "Future-Focused Search Strategies",
+            "Proven Authority Building Frameworks",
+            "Entity Optimization Specialists",
+            "Data-Driven Visibility Tracking",
+            "Transparent Reporting & Insights",
+          ].map((feature) => (
+            <motion.article key={feature} className="service-card seo-overview__serviceCard" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -4 }}>
+              <div className="service-card__glow" aria-hidden="true" />
+              <div className="seo-overview__titleRow">
+                <h3 className="service-card__title">{feature}</h3>
+              </div>
             </motion.article>
           ))}
         </motion.div>
       </motion.section>
 
       <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
-        <motion.h2 className="seo-section__title" variants={itemVariants}>Platforms We Manage</motion.h2>
+        <motion.h2 className="seo-section__title" variants={itemVariants}>The Core Pillars Of AI Search Visibility</motion.h2>
+        <motion.div className="seo-overview__serviceGrid" variants={sectionVariants}>
+          {[
+            { title: "AEO", copy: "Optimize content for answer engines and AI-generated responses.", icon: Search },
+            { title: "GEO", copy: "Improve visibility within generative AI recommendations.", icon: Bot },
+            { title: "Entity SEO", copy: "Strengthen brand recognition across AI ecosystems.", icon: Network },
+            { title: "Authority Building", copy: "Increase trust signals that influence AI recommendations.", icon: Star },
+            { title: "Citation Building", copy: "Expand mentions across trusted industry sources.", icon: Globe },
+            { title: "Knowledge Graph Optimization", copy: "Improve entity relationships and discoverability.", icon: Radar },
+          ].map((card) => (
+            <motion.article key={card.title} className="service-card seo-overview__serviceCard" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -4 }}>
+              <div className="service-card__glow" aria-hidden="true" />
+              <div className="seo-overview__titleRow">
+                <h3 className="service-card__title">{card.title}</h3>
+                <span className="service-card__iconWrap" aria-hidden="true">
+                  <card.icon size={18} strokeWidth={2.15} />
+                </span>
+              </div>
+              <p className="service-card__description">{card.copy}</p>
+            </motion.article>
+          ))}
+        </motion.div>
+      </motion.section>
+
+      <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
+        <motion.h2 className="seo-section__title" variants={itemVariants}>Tools We Use</motion.h2>
         <motion.div className="seo-tools" variants={sectionVariants}>
-          {platforms.map((platform) => (
-            <motion.span key={platform} className="seo-tools__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}>
-              {platform}
+          {tools.map((tool) => (
+            <motion.span key={tool} className="seo-tools__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}>
+              {tool}
             </motion.span>
           ))}
         </motion.div>
@@ -420,16 +491,16 @@ export default function FullstackSeoPage() {
       </motion.section>
 
       <motion.section className="seo-final-cta" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
-        <motion.h2 variants={itemVariants}>Ready To Turn Social Media Into A Growth Channel?</motion.h2>
+        <motion.h2 variants={itemVariants}>Ready To Become Visible In AI Search?</motion.h2>
         <motion.p variants={itemVariants}>
-          Turn social media into a predictable channel that builds awareness, trust, and leads through consistent strategy, creative, and measurement.
+          Position your brand for the future of search with AI Search Optimization strategies designed to improve visibility, authority, citations, and recommendations across leading AI platforms.
         </motion.p>
         <motion.div className="seo-hero__actions" variants={itemVariants}>
           <button className="seo-btn seo-btn--primary" type="button" onClick={() => setIsAuditOpen(true)}>
-            Get Social Media Audit
+            Get AI Visibility Audit
           </button>
           <button className="seo-btn seo-btn--ghost" type="button" onClick={() => setIsContactOpen(true)}>
-            Book Strategy Call
+            Schedule Consultation
           </button>
         </motion.div>
       </motion.section>
@@ -440,8 +511,12 @@ export default function FullstackSeoPage() {
 
       <AuditModal
         open={isAuditOpen}
-        heading="Social Media Audit"
-        initialHelpWith={["Social Media Management"]}
+        heading="AI Visibility Audit"
+        initialHelpWith={[
+          "AI Search Optimization",
+          "Answer Engine Optimization",
+          "Generative Engine Optimization",
+        ]}
         onClose={() => setIsAuditOpen(false)}
       />
       <ContactModal open={isContactOpen} onClose={() => setIsContactOpen(false)} />
