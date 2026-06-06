@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ServiceDetailContent } from "../../components/ServiceDetailContent";
@@ -25,10 +24,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 	return (
 		<main className="service-detail">
 			<section className="service-detail__shell">
-				<Link className="service-detail__back" href="/#services">
-					Back to services
-				</Link>
-
 				<header className="service-detail__header">
 					<p className="service-detail__kicker">Service Detail</p>
 					<h1 className="service-detail__title">{service.title}</h1>

@@ -36,11 +36,11 @@ export function FooterSection({ fullPage = false }: FooterSectionProps) {
   const currentYear = new Date().getFullYear();
 
   const footerClassName = fullPage
-    ? "w-full min-h-[64vh] bg-[linear-gradient(180deg,#111111_0%,#0c0c0c_100%)] px-0 py-0"
+    ? "w-full bg-[linear-gradient(180deg,#111111_0%,#0c0c0c_100%)] px-0 py-0"
     : "px-5 py-10 sm:px-8 lg:px-12 lg:py-12 bg-[linear-gradient(180deg,#111111_0%,#0c0c0c_100%)]";
 
   const panelClassName = fullPage
-    ? "mx-auto flex min-h-[64vh] w-full max-w-none flex-col justify-between gap-5 rounded-none border-0 bg-white/5 p-3 shadow-none backdrop-blur-md sm:p-5 lg:p-6"
+    ? "mx-auto flex w-full max-w-none flex-col gap-5 rounded-none border-0 bg-white/5 p-3 shadow-none backdrop-blur-md sm:p-5 lg:p-6"
     : "mx-auto w-full max-w-6xl rounded-4xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-md sm:p-8 lg:p-10";
 
   const contentGridClassName = fullPage
