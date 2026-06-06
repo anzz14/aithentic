@@ -1,11 +1,75 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { animate, motion, useMotionValue, useMotionValueEvent } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+function AnimatedCount({ target, suffix = "", start }: { target: number; suffix?: string; start: boolean }) {
+  const motionValue = useMotionValue(0);
+  const [value, setValue] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const controlsRef = useRef<ReturnType<typeof animate> | null>(null);
+  const frameRef = useRef<number | null>(null);
+
+  useMotionValueEvent(motionValue, "change", () => {
+    if (frameRef.current !== null) {
+      return;
+    }
+
+    frameRef.current = window.requestAnimationFrame(() => {
+      frameRef.current = null;
+      setValue(Math.min(target, Math.floor(motionValue.get())));
+    });
+  });
+
+  useEffect(() => {
+    if (!start) {
+      return undefined;
+    }
+
+    controlsRef.current?.stop();
+    setValue(0);
+    setIsComplete(false);
+    motionValue.set(0);
+
+    controlsRef.current = animate(motionValue, target, {
+      duration: 9,
+      ease: [0.22, 1, 0.36, 1],
+      onComplete: () => {
+        setValue(target);
+        setIsComplete(true);
+      },
+    });
+
+    return () => {
+      controlsRef.current?.stop();
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+        frameRef.current = null;
+      }
+    };
+  }, [motionValue, start, target]);
+
+  const shouldShowSuffix = isComplete || value >= Math.max(target - 1, 0);
+
+  return (
+    <span className="visibility-boost__value">
+      {value}
+      <motion.span
+        aria-hidden="true"
+        className="inline-block"
+        initial={false}
+        animate={shouldShowSuffix ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.7, y: 6 }}
+        transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {suffix}
+      </motion.span>
+    </span>
+  );
+}
 
 export function VisibilityBoostSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -27,13 +91,42 @@ export function VisibilityBoostSection() {
     },
   };
 
+  useEffect(() => {
+    const element = ref.current;
+
+    if (!element) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHasAnimated(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.35,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <motion.section
       ref={ref}
       className="visibility-boost relative overflow-hidden bg-[radial-gradient(circle_at_80%_20%,rgba(249,115,22,0.08),transparent_26%),linear-gradient(180deg,#171717_0%,#151515_100%)]"
       id="visibility-boost"
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      animate={hasAnimated ? "visible" : "hidden"}
       variants={containerVariants}
     >
       <motion.div className="visibility-boost__inner" variants={containerVariants}>
@@ -57,11 +150,11 @@ export function VisibilityBoostSection() {
 
           <motion.div className="visibility-boost__stats" aria-label="Performance highlights" variants={containerVariants}>
             <motion.div className="visibility-boost__stat" variants={itemVariants}>
-              <span className="visibility-boost__value">20+</span>
+              <AnimatedCount target={20} suffix="+" start={hasAnimated} />
               <span className="visibility-boost__label">Happy clients</span>
             </motion.div>
             <motion.div className="visibility-boost__stat" variants={itemVariants}>
-              <span className="visibility-boost__value">100+</span>
+              <AnimatedCount target={100} suffix="+" start={hasAnimated} />
               <span className="visibility-boost__label">Finished projects</span>
             </motion.div>
           </motion.div>
