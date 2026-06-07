@@ -85,8 +85,8 @@ export function FooterSection({ fullPage = false }: FooterSectionProps) {
           <motion.div className="grid gap-3" variants={itemVariants}>
             <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-orange-500">Contact</h2>
             <div className="grid gap-2 text-sm text-slate-300">
-              <a className="transition-colors hover:text-white" href="mailto:hello@aithentic.com">hello@aithentic.com</a>
-              <a className="transition-colors hover:text-white" href="tel:+10000000000">+1 (000) 000-0000</a>
+              <a className="transition-colors hover:text-white" href="mailto:contact@aithentic.in">contact@aithentic.in</a>
+              <a className="transition-colors hover:text-white" href="tel:+917021091516">+91 70210 91516</a>
               <a className="transition-colors hover:text-white inline-flex items-center gap-2" href="https://wa.me/7021091516" target="_blank" rel="noopener noreferrer">
                 <Phone size={16} />
                 WhatsApp
