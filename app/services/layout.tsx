@@ -1,23 +1,134 @@
+"use client";
+
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 
 export default function ServicesLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const [activeHref, setActiveHref] = useState<string>("/");
+
+  const [isNavScrolled, setIsNavScrolled] = useState(false);
+
+  const serviceLabel = useMemo(() => {
+    const slug = pathname.split("/").filter(Boolean).pop() ?? "services";
+    return slug
+      .split("-")
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" ");
+  }, [pathname]);
+
+  const navLinks = useMemo(
+    () => [
+      { label: "Home", href: "/" },
+      { label: "Stats", href: "#stats" },
+      { label: "Services", href: "#services" },
+      { label: "Process", href: "#process" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    [],
+  );
+
+  useEffect(() => {
+    const updateNavState = () => {
+      setIsNavScrolled(window.scrollY > 12);
+    };
+
+    updateNavState();
+    window.addEventListener("scroll", updateNavState, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", updateNavState);
+    };
+  }, []);
+
+  useEffect(() => {
+    const sectionMap: Array<{ selector: string; id: string }> = [
+      { selector: ".seo-hero", id: "overview" },
+      { selector: ".seo-stats", id: "stats" },
+      { selector: ".seo-overview__serviceGrid", id: "services" },
+      { selector: ".seo-timeline", id: "process" },
+      { selector: ".seo-faq", id: "faq" },
+    ];
+
+    sectionMap.forEach(({ selector, id }) => {
+      const element = document.querySelector<HTMLElement>(selector);
+
+      if (element) {
+        element.id = id;
+      }
+    });
+
+    setActiveHref("#overview");
+  }, [pathname]);
+
+  useEffect(() => {
+    const sectionSelectors = navLinks
+      .filter((link) => link.href.startsWith("#"))
+      .map((link) => link.href)
+      .join(", ");
+
+    if (!sectionSelectors) {
+      return;
+    }
+
+    const observedSections = Array.from(document.querySelectorAll<HTMLElement>(sectionSelectors));
+
+    if (!observedSections.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visibleEntry) {
+          return;
+        }
+
+        const nextActive = `#${visibleEntry.target.id}`;
+        setActiveHref(nextActive);
+      },
+      {
+        threshold: [0.25, 0.4, 0.6],
+        rootMargin: "-15% 0px -55% 0px",
+      },
+    );
+
+    observedSections.forEach((section) => observer.observe(section));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [navLinks]);
+
   return (
     <div className="relative">
-      <nav className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(10,10,10,0.88)] backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-          <Link
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-orange-500/40 hover:bg-white/10"
-            href="/#services"
-          >
-            <span aria-hidden="true">←</span>
-            Back to services
+      <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label={`${serviceLabel} navigation`}>
+        <div className="site-nav__inner">
+          <Link className="site-nav__brand" href="/">
+            <span className="site-nav__brand-accent">Ai</span>thentic
           </Link>
-          <span className="text-xs font-medium uppercase tracking-[0.24em] text-slate-400">
-            Aithentic Services
-          </span>
+
+          <nav className="site-nav__links" aria-label={`${serviceLabel} section links`}>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                className={`site-nav__link${activeHref === link.href ? " site-nav__link--active" : ""}`}
+                href={link.href}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <Link className="site-nav__cta" href="/#contact">
+            Contact
+          </Link>
         </div>
-      </nav>
+      </header>
       {children}
     </div>
   );
