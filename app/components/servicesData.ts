@@ -44,8 +44,8 @@ export const serviceCards: readonly ServiceCard[] = [
     },
   },
   {
-    slug: "ai-so",
-    title: "AI SO",
+    slug: "ai-search-optimization",
+    title: "AI Search Optimization",
     description:
       "Modern search is changing. We optimize your brand for AI-driven search engines, answer engines, and generative experiences.",
     bullets: ["AI Search Visibility", "AEO", "GEO"],

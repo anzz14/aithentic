@@ -290,7 +290,7 @@ export default function AppStoreOptimizationPage() {
             </ul>
           </motion.div>
           <motion.div className="seo-problem__visual" aria-hidden="true" variants={itemVariants}>
-            <div className="seo-problem__image seo-problem__image--chart seo-problem__image--aso" />
+            <img src="/App%20Store%20Optimisation.jpg.jpeg" alt="App Store optimization" className="seo-problem__image seo-problem__image--chart seo-problem__image--aso" />
           </motion.div>
         </motion.div>
       </motion.section>

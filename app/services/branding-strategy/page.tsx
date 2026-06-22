@@ -258,7 +258,9 @@ export default function BrandingStrategyPage() {
         <motion.h2 className="seo-section__title" variants={itemVariants}>Why Most Brands Struggle to Grow</motion.h2>
         <motion.div className="seo-problem__grid" variants={sectionVariants}>
           <motion.div variants={itemVariants}><ul className="seo-list">{problems.map((problem) => <li key={problem}>{problem}</li>)}</ul></motion.div>
-          <motion.div className="seo-problem__visual" aria-hidden="true" variants={itemVariants}><div className="seo-problem__image seo-problem__image--brand" /></motion.div>
+          <motion.div className="seo-problem__visual" aria-hidden="true" variants={itemVariants}>
+            <img src="/Brading%20and%20Stratergy.jpg.jpeg" alt="Branding and strategy" className="seo-problem__image seo-problem__image--brand" />
+          </motion.div>
         </motion.div>
       </motion.section>
 

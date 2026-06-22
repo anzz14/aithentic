@@ -162,7 +162,7 @@ export default function PerformanceAdvertisingPage() {
         <motion.h2 className="seo-section__title" variants={itemVariants}>Why Most Ad Campaigns Fail</motion.h2>
         <motion.div className="seo-problem__grid" variants={sectionVariants}>
           <motion.div variants={itemVariants}><ul className="seo-list">{problems.map((p) => <li key={p}>{p}</li>)}</ul></motion.div>
-          <motion.div className="seo-problem__visual" aria-hidden="true" variants={itemVariants}><Image className="seo-problem__image" src="/newadd.jpeg" alt="Ad metrics visual" fill sizes="(max-width:1024px) 100vw,50vw" priority={false} /></motion.div>
+          <motion.div className="seo-problem__visual" aria-hidden="true" variants={itemVariants}><Image className="seo-problem__image" src="/PPC.jpg.jpeg" alt="Ad metrics visual" fill sizes="(max-width:1024px) 100vw,50vw" priority={false} /></motion.div>
         </motion.div>
       </motion.section>
 

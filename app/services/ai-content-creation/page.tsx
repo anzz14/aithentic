@@ -180,7 +180,9 @@ export default function AIContentCreationPage() {
         <motion.h2 className="seo-section__title" variants={itemVariants}>Why Most Content Fails to Perform</motion.h2>
         <motion.div className="seo-problem__grid" variants={sectionVariants}>
           <motion.div variants={itemVariants}><ul className="seo-list">{problems.map((problem) => <li key={problem}>{problem}</li>)}</ul></motion.div>
-          <motion.div className="seo-problem__visual" aria-hidden="true" variants={itemVariants}><div className="seo-problem__image seo-problem__image--ai-content" /></motion.div>
+          <motion.div className="seo-problem__visual" aria-hidden="true" variants={itemVariants}>
+            <img src="/AI%20Content%20Creation.jpg.jpeg" alt="AI content creation" className="seo-problem__image seo-problem__image--ai-content" />
+          </motion.div>
         </motion.div>
       </motion.section>
 

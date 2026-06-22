@@ -301,7 +301,7 @@ export default function AiSearchOptimizationPage() {
           <motion.div className="seo-problem__visual" aria-hidden="true" variants={itemVariants}>
             <Image
               className="seo-problem__image"
-              src="/newadd.jpeg"
+              src="/SEO.jpg.jpeg"
               alt="Traditional search transforming into AI-powered recommendations"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
