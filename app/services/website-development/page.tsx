@@ -134,11 +134,49 @@
     "Monitoring performance and continuously improving results after launch.",
   ] as const;
 
-  const caseStudies = [
-    { brand: "SaaS Platform", result: "+150% Lead Velocity" },
-    { brand: "eCommerce Store", result: "+2.8X Conversion Rate" },
-    { brand: "Local Service", result: "+80% Organic Leads" },
-    { brand: "B2B Platform", result: "+120% Traffic Quality" },
+  const pastWorks = [
+    {
+      brand: "Spike Creation",
+      url: "https://spikacreation.com/",
+      result: "Creative studio presence built to feel premium, clear, and conversion-ready.",
+      summary:
+        "A polished brand-first website that presents services with confidence while keeping the path to inquiry simple.",
+    },
+    {
+      brand: "ATO Calculators",
+      url: "https://atocalculators.com/",
+      result: "Utility-driven experience designed for fast access and repeat visits.",
+      summary:
+        "A focused product site that organizes calculator content in a way that is easy to scan, use, and trust.",
+    },
+    {
+      brand: "Numero Expert",
+      url: "https://numeroexpert.com/",
+      result: "A refined digital presence shaped for a niche expertise-led audience.",
+      summary:
+        "We structured the experience to highlight authority, clarity, and service discovery without unnecessary friction.",
+    },
+    {
+      brand: "Remote Sync",
+      url: "https://remotesync.co/",
+      result: "A modern SaaS-style site built to communicate product value quickly.",
+      summary:
+        "A sleek, streamlined build that supports a software brand with stronger messaging, layout flow, and CTA visibility.",
+    },
+    {
+      brand: "Know Your Taxes",
+      url: "https://knowyourtaxes.in/",
+      result: "A trust-focused site crafted for tax guidance and lead generation.",
+      summary:
+        "We created a more approachable structure for visitors looking for tax help, with messaging that feels credible and clear.",
+    },
+    {
+      brand: "Know Your Taxes Co",
+      url: "https://knowyourtaxes.co/",
+      result: "A companion brand experience tailored for a professional services audience.",
+      summary:
+        "This version emphasizes clarity, expertise, and conversion flow so the brand feels consistent and easy to engage with.",
+    },
   ] as const;
 
   const platforms = ["WordPress", "Webflow", "Shopify", "WooCommerce", "Custom Development", "Headless CMS Solutions"] as const;
@@ -400,14 +438,33 @@
         </motion.section>
 
         <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
-          <motion.h2 className="seo-section__title" variants={itemVariants}>Real Website Results</motion.h2>
-          <motion.div className="seo-results__grid" variants={sectionVariants}>
-            {caseStudies.map((item) => (
-              <motion.article key={item.brand} className="seo-results__card" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -3 }}>
+          <motion.h2 className="seo-section__title" variants={itemVariants}>Past Work We Built</motion.h2>
+          <motion.p className="seo-section__subtitle" variants={itemVariants}>
+            A selection of live websites we designed and developed for brands that needed clearer positioning, stronger usability, and better conversion flow.
+          </motion.p>
+          <motion.div className="seo-results__grid seo-results__grid--portfolio" variants={sectionVariants}>
+            {pastWorks.map((item) => (
+              <motion.a
+                key={item.brand}
+                className="seo-results__card seo-results__card--link"
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open ${item.brand} live site`}
+                variants={itemVariants}
+                whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+              >
+                <div className="seo-results__cardTop">
+                  <span className="seo-results__eyebrow">Live project</span>
+                  <span className="seo-results__arrow" aria-hidden="true">↗</span>
+                </div>
                 <p className="seo-results__brand">{item.brand}</p>
                 <p className="seo-results__result">{item.result}</p>
-                <div className="seo-results__chart" aria-hidden="true" />
-              </motion.article>
+                <p className="seo-results__summary">{item.summary}</p>
+                <div className="seo-results__footer">
+                  <span className="seo-results__domain">{new URL(item.url).hostname}</span>
+                </div>
+              </motion.a>
             ))}
           </motion.div>
         </motion.section>

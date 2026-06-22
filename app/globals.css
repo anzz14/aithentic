@@ -1338,6 +1338,10 @@ button {
     gap: 0.8rem;
   }
 
+  .seo-results__grid--portfolio {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .seo-overview__card,
   .seo-results__card,
   .seo-problem__visual,
@@ -1808,6 +1812,46 @@ button {
     padding: 0.95rem;
   }
 
+  .seo-results__card--link {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
+  }
+
+  .seo-results__card--link:hover {
+    border-color: rgba(249, 115, 22, 0.34);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+  }
+
+  .seo-results__cardTop,
+  .seo-results__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .seo-results__eyebrow {
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .seo-results__arrow {
+    color: var(--color-accent);
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
   .seo-results__brand {
     margin: 0;
     color: rgba(255, 255, 255, 0.92);
@@ -1821,13 +1865,43 @@ button {
     font-weight: 700;
   }
 
+  .seo-results__summary {
+    margin: 0.55rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .seo-results__footer {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .seo-results__link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-accent);
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .seo-results__domain {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.76rem;
+    font-weight: 700;
+  }
+
   .seo-results__chart {
-    height: 4rem;
-    margin-top: 0.8rem;
+    height: 3.4rem;
+    margin-top: 1rem;
     border-radius: 0.7rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background:
-      linear-gradient(120deg, rgba(249, 115, 22, 0.2), rgba(249, 115, 22, 0.03)),
+      radial-gradient(circle at top right, rgba(249, 115, 22, 0.34), transparent 48%),
+      linear-gradient(120deg, rgba(249, 115, 22, 0.16), rgba(255, 255, 255, 0.03)),
       rgba(255, 255, 255, 0.03);
   }
 
@@ -2006,7 +2080,8 @@ button {
     }
 
     .seo-stats__grid,
-    .seo-results__grid {
+    .seo-results__grid,
+    .seo-results__grid--portfolio {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -2020,25 +2095,206 @@ button {
     }
   }
 
-  @media (max-width: 640px) {
-    .seo-stats__grid,
-    .seo-overview__grid,
-    .seo-results__grid,
-    .seo-timeline {
+  @media (max-width: 900px) {
+    .seo-hero {
+      padding-top: 5.75rem;
+    }
+
+    .seo-hero__inner {
+      gap: 1.5rem;
+    }
+
+    .seo-hero__copy,
+    .seo-hero__visual {
+      width: 100%;
+    }
+
+    .seo-hero__visual {
+      min-height: 18rem;
+      order: 2;
+    }
+
+    .seo-hero__copy {
+      order: 1;
+    }
+
+    .seo-hero__title {
+      font-size: clamp(1.9rem, 7vw, 3rem);
+    }
+
+    .seo-hero__subtitle {
+      max-width: none;
+    }
+
+    .seo-hero__trust {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 0.75rem 1rem;
+    }
+
+    .seo-stats__layout {
       grid-template-columns: 1fr;
     }
 
+    .seo-stats__panel {
+      padding: 0.9rem;
+    }
+
+    .seo-overview__serviceGrid,
+    .seo-results__grid--portfolio {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .seo-detail__columns {
+      grid-template-columns: 1fr;
+    }
+
+    .seo-final-cta .seo-hero__actions {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .seo-hero,
+    .seo-section,
+    .seo-final-cta,
+    .seo-back {
+      padding-inline: 1rem;
+    }
+
     .seo-hero {
-      padding-top: 5.6rem;
+      padding-top: 5.1rem;
+      padding-bottom: 2rem;
+    }
+
+    .seo-hero__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .seo-hero__actions {
+      width: 100%;
+    }
+
+    .seo-hero__actions .seo-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .seo-hero__trust {
+      margin-top: 1rem;
+      font-size: 0.84rem;
+    }
+
+    .seo-hero__visual {
+      min-height: 14rem;
     }
 
     .seo-float {
       position: static;
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
+      width: 100%;
+      justify-content: center;
     }
 
-    .seo-hero__visual {
-      min-height: 0;
+    .seo-dashboard {
+      width: 100%;
+      padding: 0.9rem;
+    }
+
+    .seo-dashboard__graph {
+      height: 5.2rem;
+    }
+
+    .seo-dashboard__bars {
+      gap: 0.4rem;
+    }
+
+    .seo-stats__introCard,
+    .seo-stats__panel,
+    .seo-problem__visual,
+    .seo-results__card,
+    .seo-detail__item,
+    .seo-timeline__step,
+    .seo-faq__item {
+      border-radius: 0.9rem;
+    }
+
+    .seo-stats__row {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+      padding: 0.85rem 0.9rem;
+    }
+
+    .seo-stats__value {
+      font-size: 1rem;
+    }
+
+    .seo-overview__serviceGrid,
+    .seo-results__grid,
+    .seo-results__grid--portfolio,
+    .seo-timeline,
+    .seo-detail__columns {
+      grid-template-columns: 1fr;
+    }
+
+    .seo-overview__serviceGrid,
+    .seo-results__grid,
+    .seo-results__grid--portfolio,
+    .seo-timeline {
+      gap: 0.9rem;
+    }
+
+    .seo-results__card {
+      padding: 0.9rem;
+    }
+
+    .seo-results__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
+
+    .seo-results__domain {
+      word-break: break-word;
+    }
+
+    .seo-tools {
+      gap: 0.45rem;
+    }
+
+    .seo-tools__item {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .seo-faq__item {
+      padding: 0.75rem 0.85rem;
+    }
+
+    .seo-faq__item summary {
+      font-size: 0.92rem;
+    }
+
+    .seo-final-cta {
+      padding-top: 1.4rem;
+      padding-bottom: 1.8rem;
+      text-align: left;
+    }
+
+    .seo-final-cta .seo-hero__actions {
+      justify-content: stretch;
+    }
+
+    .seo-back {
+      padding-top: 0.2rem;
+      padding-bottom: 0.8rem;
+    }
+
+    .seo-back a {
+      display: inline-flex;
+      width: 100%;
+      justify-content: center;
     }
   }
 
