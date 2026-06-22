@@ -318,7 +318,7 @@ export default function AiSearchOptimizationPage() {
             <motion.article
               key={card.title}
               className="service-card seo-overview__serviceCard"
-              style={{ ["--service-accent" as const]: "#7C3AED" } as CSSProperties}
+              style={{ ["--service-accent" as const]: "#F97316" } as CSSProperties}
               variants={itemVariants}
               whileHover={prefersReducedMotion ? undefined : { y: -4 }}
             >

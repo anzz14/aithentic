@@ -38,12 +38,20 @@ export function AuditModal({ open, onClose, heading, initialHelpWith = [] }: Aud
   const [errors, setErrors] = useState<{ fullName?: string; email?: string; website?: string }>({});
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
+  const sameHelpWith = (current: string[], next: string[]) => {
+    if (current.length !== next.length) {
+      return false;
+    }
+
+    return current.every((item, index) => item === next[index]);
+  };
+
   useEffect(() => {
     if (!open) {
       return;
     }
 
-    setHelpWith(initialHelpWith);
+    setHelpWith((current) => (sameHelpWith(current, initialHelpWith) ? current : [...initialHelpWith]));
   }, [initialHelpWith, open]);
 
   if (!open) return null;
