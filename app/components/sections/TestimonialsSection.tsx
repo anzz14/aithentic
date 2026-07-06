@@ -69,9 +69,7 @@ export function TestimonialsSection({
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
             >
               <span className="h-1.5 w-1.5 rounded-full bg-orange-500" aria-hidden="true" />
-              <span>{active.name}</span>
-              <span aria-hidden="true">•</span>
-              <span>{active.title}</span>
+              <span>Anonymous</span>
             </motion.div>
           </AnimatePresence>
         </div>

@@ -65,6 +65,27 @@ export const serviceCards: readonly ServiceCard[] = [
     },
   },
   {
+    slug: "website-development",
+    title: "Website Development",
+    description:
+      "Fast, conversion-focused websites built for AI era to support rankings, improve user experience, and turn traffic into qualified leads.",
+    bullets: ["Custom Websites", "Conversion UX", "Speed Optimization"],
+    iconKey: "layoutGrid",
+    detail: {
+      content:
+        "Fast, conversion-focused websites built for AI era to support rankings, improve user experience, and turn traffic into qualified leads.",
+      features: [
+        "Custom Websites",
+        "Conversion UX",
+        "Speed Optimization",
+        "Technical SEO Foundations",
+        "Responsive Development",
+        "Lead-Focused Page Architecture",
+      ],
+      cta: "Build Your Website",
+    },
+  },
+  {
     slug: "content-writing",
     title: "Content SEO",
     description:
@@ -167,27 +188,6 @@ export const serviceCards: readonly ServiceCard[] = [
         "Performance Insights",
       ],
       cta: "Scale Social Presence",
-    },
-  },
-  {
-    slug: "website-development",
-    title: "Website Development",
-    description:
-      "Fast, conversion-focused websites built for AI era to support rankings, improve user experience, and turn traffic into qualified leads.",
-    bullets: ["Custom Websites", "Conversion UX", "Speed Optimization"],
-    iconKey: "layoutGrid",
-    detail: {
-      content:
-        "Fast, conversion-focused websites built for AI era to support rankings, improve user experience, and turn traffic into qualified leads.",
-      features: [
-        "Custom Websites",
-        "Conversion UX",
-        "Speed Optimization",
-        "Technical SEO Foundations",
-        "Responsive Development",
-        "Lead-Focused Page Architecture",
-      ],
-      cta: "Build Your Website",
     },
   },
   {
