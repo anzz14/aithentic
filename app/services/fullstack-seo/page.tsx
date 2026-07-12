@@ -266,6 +266,11 @@ export default function FullstackSeoPage() {
                 <motion.span animate={prefersReducedMotion ? undefined : { scaleY: [1, 1.12, 1] }} transition={prefersReducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.4 }} />
                 <motion.span animate={prefersReducedMotion ? undefined : { scaleY: [1, 1.28, 1] }} transition={prefersReducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.6 }} />
               </div>
+              <div className="seo-dashboard__metrics">
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">340+</span><span className="seo-dashboard__metricLabel">Keywords</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">3.8x</span><span className="seo-dashboard__metricLabel">Traffic</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">120+</span><span className="seo-dashboard__metricLabel">Leads</span></div>
+              </div>
             </motion.div>
             <motion.div className="seo-float seo-float--one" animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><LineChart size={18} /> Keyword Growth</motion.div>
             <motion.div className="seo-float seo-float--two" animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><BarChart3 size={18} /> Rankings</motion.div>

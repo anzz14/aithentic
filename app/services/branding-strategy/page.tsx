@@ -213,6 +213,11 @@ export default function BrandingStrategyPage() {
                 <span>Brand Strategy Dashboard</span>
               </div>
               <div className="seo-dashboard__graph seo-dashboard__graph--brand" />
+              <div className="seo-dashboard__metrics">
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">12</span><span className="seo-dashboard__metricLabel">Brand Kits</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">4x</span><span className="seo-dashboard__metricLabel">Recall</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">30+</span><span className="seo-dashboard__metricLabel">Touchpoints</span></div>
+              </div>
             </div>
             <motion.div
               className="seo-float seo-float--one"

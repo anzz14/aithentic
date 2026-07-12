@@ -251,6 +251,11 @@ export default function AiSearchOptimizationPage() {
                 <motion.span animate={prefersReducedMotion ? undefined : { scaleY: [1, 1.12, 1] }} transition={prefersReducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.4 }} />
                 <motion.span animate={prefersReducedMotion ? undefined : { scaleY: [1, 1.28, 1] }} transition={prefersReducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.6 }} />
               </motion.div>
+              <div className="seo-dashboard__metrics">
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">520+</span><span className="seo-dashboard__metricLabel">Citations</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">75+</span><span className="seo-dashboard__metricLabel">AI Wins</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">3x</span><span className="seo-dashboard__metricLabel">Visibility</span></div>
+              </div>
             </motion.div>
             <motion.div className="seo-float seo-float--one" animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><Bot size={18} /> ChatGPT</motion.div>
             <motion.div className="seo-float seo-float--two" animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><Globe size={18} /> Gemini</motion.div>

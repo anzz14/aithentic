@@ -1222,6 +1222,38 @@ button {
     min-height: 5.4rem;
   }
 
+  .seo-dashboard__metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+
+  .seo-dashboard__metric {
+    display: grid;
+    gap: 0.12rem;
+    min-width: 4.75rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .seo-dashboard__metricValue {
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .seo-dashboard__metricLabel {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
   .seo-float {
     position: absolute;
     display: inline-flex;

@@ -129,6 +129,11 @@ export default function PerformanceAdvertisingPage() {
             <div className="seo-dashboard seo-dashboard--ads">
               <div className="seo-dashboard__row"><BarChart3 size={16} /><span>Ad Dashboard</span></div>
               <div className="seo-dashboard__graph seo-dashboard__graph--ads" />
+              <div className="seo-dashboard__metrics">
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">8.4x</span><span className="seo-dashboard__metricLabel">ROAS</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">12%</span><span className="seo-dashboard__metricLabel">CTR</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">1.4k</span><span className="seo-dashboard__metricLabel">Conversions</span></div>
+              </div>
             </div>
             <motion.div className="seo-float seo-float--one" animate={prefersReducedMotion ? undefined : { y: [0, -6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 6, repeat: Number.POSITIVE_INFINITY }}><Megaphone size={18} /> ROAS</motion.div>
             <motion.div className="seo-float seo-float--two" animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY }}><Gauge size={18} /> Conversions</motion.div>

@@ -147,6 +147,11 @@ export default function AIContentCreationPage() {
             <div className="seo-dashboard seo-dashboard--content-ai">
               <div className="seo-dashboard__row"><Clapperboard size={16} /><span>Creative Dashboard</span></div>
               <div className="seo-dashboard__graph seo-dashboard__graph--content-ai" />
+              <div className="seo-dashboard__metrics">
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">4x</span><span className="seo-dashboard__metricLabel">Faster</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">320+</span><span className="seo-dashboard__metricLabel">Assets</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">65%</span><span className="seo-dashboard__metricLabel">Engagement</span></div>
+              </div>
             </div>
             <motion.div className="seo-float seo-float--one" animate={prefersReducedMotion ? undefined : { y: [0, -6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 6, repeat: Number.POSITIVE_INFINITY }}><PlayCircle size={18} /> Video Previews</motion.div>
             <motion.div className="seo-float seo-float--two" animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY }}><Sparkles size={18} /> AI Visuals</motion.div>

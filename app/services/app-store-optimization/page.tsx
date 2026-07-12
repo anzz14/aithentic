@@ -215,6 +215,11 @@ export default function AppStoreOptimizationPage() {
                 <span>App Growth Dashboard</span>
               </div>
               <div className="seo-dashboard__graph seo-dashboard__graph--aso" />
+              <div className="seo-dashboard__metrics">
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">120+</span><span className="seo-dashboard__metricLabel">Keywords</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">4.6/5</span><span className="seo-dashboard__metricLabel">Ratings</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">75%</span><span className="seo-dashboard__metricLabel">Installs</span></div>
+              </div>
             </div>
             <motion.div
               className="seo-float seo-float--one"

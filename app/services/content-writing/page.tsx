@@ -219,6 +219,11 @@ export default function ContentWritingPage() {
                 <span>Content Dashboard</span>
               </div>
               <div className="seo-dashboard__graph seo-dashboard__graph--content" />
+              <div className="seo-dashboard__metrics">
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">180+</span><span className="seo-dashboard__metricLabel">Articles</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">24</span><span className="seo-dashboard__metricLabel">Topics</span></div>
+                <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">42%</span><span className="seo-dashboard__metricLabel">Traffic</span></div>
+              </div>
             </div>
             <motion.div className="seo-float seo-float--one" animate={prefersReducedMotion ? undefined : { y: [0, -6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 6, repeat: Number.POSITIVE_INFINITY }}><BarChart3 size={18} /> Keyword Growth</motion.div>
             <motion.div className="seo-float seo-float--two" animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY }}><Sparkles size={18} /> AI Visibility</motion.div>

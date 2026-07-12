@@ -288,6 +288,11 @@
                   <motion.span animate={prefersReducedMotion ? undefined : { scaleY: [1, 1.12, 1] }} transition={prefersReducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.4 }} />
                   <motion.span animate={prefersReducedMotion ? undefined : { scaleY: [1, 1.28, 1] }} transition={prefersReducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.6 }} />
                 </motion.div>
+                <div className="seo-dashboard__metrics">
+                  <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">45+</span><span className="seo-dashboard__metricLabel">Sites</span></div>
+                  <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">98%</span><span className="seo-dashboard__metricLabel">Mobile</span></div>
+                  <div className="seo-dashboard__metric"><span className="seo-dashboard__metricValue">2.3s</span><span className="seo-dashboard__metricLabel">Load Time</span></div>
+                </div>
               </motion.div>
               <motion.div className="seo-float seo-float--one" animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><Code size={18} /> Modern Mockups</motion.div>
               <motion.div className="seo-float seo-float--two" animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }} transition={prefersReducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}><Layout size={18} /> Interactive UI</motion.div>
