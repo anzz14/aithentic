@@ -162,7 +162,7 @@ button {
 .site-nav__links {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 3.5rem;
 }
 
 .site-nav__link {
