@@ -141,6 +141,7 @@
       result: "Creative studio presence built to feel premium, clear, and conversion-ready.",
       summary:
         "A polished brand-first website that presents services with confidence while keeping the path to inquiry simple.",
+      image: "/spikacreation.png",
     },
     {
       brand: "ATO Calculators",
@@ -148,6 +149,7 @@
       result: "Utility-driven experience designed for fast access and repeat visits.",
       summary:
         "A focused product site that organizes calculator content in a way that is easy to scan, use, and trust.",
+      image: "/atocalculator.png",
     },
     {
       brand: "Numero Expert",
@@ -155,6 +157,7 @@
       result: "A refined digital presence shaped for a niche expertise-led audience.",
       summary:
         "We structured the experience to highlight authority, clarity, and service discovery without unnecessary friction.",
+      image: "/numeroexpert.png",
     },
     {
       brand: "Remote Sync",
@@ -162,6 +165,7 @@
       result: "A modern SaaS-style site built to communicate product value quickly.",
       summary:
         "A sleek, streamlined build that supports a software brand with stronger messaging, layout flow, and CTA visibility.",
+      image: "/remotesync.png",
     },
     {
       brand: "Know Your Taxes",
@@ -169,6 +173,7 @@
       result: "A trust-focused site crafted for tax guidance and lead generation.",
       summary:
         "We created a more approachable structure for visitors looking for tax help, with messaging that feels credible and clear.",
+      image: "/knowyourtaxes.png",
     },
     {
       brand: "Know Your Taxes Co",
@@ -176,6 +181,7 @@
       result: "A companion brand experience tailored for a professional services audience.",
       summary:
         "This version emphasizes clarity, expertise, and conversion flow so the brand feels consistent and easy to engage with.",
+      image: "/knowyourtaxesco.png",
     },
   ] as const;
 
@@ -454,6 +460,15 @@
                 variants={itemVariants}
                 whileHover={prefersReducedMotion ? undefined : { y: -4 }}
               >
+                <div className="seo-results__imageContainer">
+                  <Image
+                    src={item.image}
+                    alt={item.brand}
+                    width={280}
+                    height={160}
+                    className="seo-results__image"
+                  />
+                </div>
                 <div className="seo-results__cardTop">
                   <span className="seo-results__eyebrow">Live project</span>
                   <span className="seo-results__arrow" aria-hidden="true">↗</span>
