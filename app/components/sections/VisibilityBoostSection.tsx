@@ -1,7 +1,22 @@
 "use client";
 
+import Image from "next/image";
 import { animate, motion, useMotionValue, useMotionValueEvent } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+
+const visibilityBoostLogos = [
+  "/logos/business_logo-jukebox-bg-removed.png",
+  "/logos/trace_presence_png-2jan-resize-300-jukebox-bg-removed.png",
+  "/logos/unnamed (1)-jukebox-bg-removed.png",
+  "/logos/unnamed (2)-jukebox-bg-removed.png",
+  "/logos/unnamed (3)-jukebox-bg-removed.png",
+  "/logos/unnamed (4)-jukebox-bg-removed.png",
+  "/logos/unnamed (5)-jukebox-bg-removed.png",
+  "/logos/unnamed-jukebox-bg-removed.png",
+  "/logos/unnamed-jukebox-bg-removed-2.png",
+] as const;
+
+const marqueeLogos = [...visibilityBoostLogos, ...visibilityBoostLogos] as const;
 
 function AnimatedCount({ target, suffix = "", start }: { target: number; suffix?: string; start: boolean }) {
   const motionValue = useMotionValue(0);
@@ -160,6 +175,27 @@ export function VisibilityBoostSection() {
           </motion.div>
         </motion.div>
       </motion.div>
+
+      <div className="visibility-boost__logos" aria-label="Client logos">
+        <motion.div
+          className="visibility-boost__logosTrack"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+        >
+          {marqueeLogos.map((logoPath, index) => (
+          <div key={`${logoPath}-${index}`} className="visibility-boost__logo">
+            <Image
+              src={logoPath}
+              alt=""
+              aria-hidden="true"
+              width={180}
+              height={90}
+              className="visibility-boost__logoImage"
+            />
+          </div>
+          ))}
+        </motion.div>
+      </div>
     </motion.section>
   );
 }

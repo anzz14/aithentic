@@ -2421,6 +2421,45 @@ button {
     margin-top: 0.5rem;
   }
 
+  .visibility-boost__logos {
+    width: 100%;
+    margin: 1.1rem 0 0;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    display: block;
+  }
+
+  .visibility-boost__logosTrack {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .visibility-boost__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 clamp(10rem, 14vw, 16rem);
+    width: clamp(10rem, 14vw, 16rem);
+    min-height: 6rem;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    border: 0;
+  }
+
+  .visibility-boost__logoImage {
+    width: 100%;
+    height: auto;
+    max-height: 5.25rem;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
   .visibility-boost__stat {
     display: inline-flex;
     align-items: baseline;
