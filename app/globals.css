@@ -1894,6 +1894,58 @@ button {
       rgba(255, 255, 255, 0.03);
   }
 
+  .seo-section__subtitle {
+    margin: 0 0 1.2rem;
+    font-family: var(--font-syne), Arial, Helvetica, sans-serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .seo-detail__caseGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .seo-detail__caseCard {
+    padding: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .seo-detail__caseCard h4 {
+    margin: 0 0 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .seo-case__list {
+    margin: 0;
+    padding-left: 1.2rem;
+    list-style: disc;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .seo-case__list li {
+    margin-bottom: 0.3rem;
+  }
+
+  .seo-case__growth {
+    margin: 0.6rem 0 0;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-accent);
+  }
+
   .seo-tools {
     display: flex;
     flex-wrap: wrap;
