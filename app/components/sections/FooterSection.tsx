@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone } from "lucide-react";
-import { BrandMark } from "../BrandMark";
+import Image from "next/image";
 
 type FooterSectionProps = {
   fullPage?: boolean;
@@ -64,7 +64,14 @@ export function FooterSection({ fullPage = false }: FooterSectionProps) {
         <motion.div className={contentGridClassName} variants={containerVariants}>
           <motion.div className="grid gap-4" variants={itemVariants}>
             <a className="inline-flex w-fit items-center" href="#top" aria-label="Aithentic home">
-              <BrandMark className="h-14 w-auto sm:h-16" />
+              <Image
+                src="/2cd2e690-fab4-47c5-bfe3-d7794adc0b2c.png"
+                alt="Aithentic"
+                width={200}
+                height={150}
+                className="h-20 w-auto sm:h-28"
+                priority
+              />
             </a>
             <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-[0.96rem]">
               AI-powered SEO and growth systems designed to keep your brand visible across search,
