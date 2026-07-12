@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import { BrandMark } from "../components/BrandMark";
 
 export default function ServicesLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -59,7 +60,13 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
       }
     });
 
-    setActiveHref("#overview");
+    const resetTimer = window.setTimeout(() => {
+      setActiveHref("#overview");
+    }, 0);
+
+    return () => {
+      window.clearTimeout(resetTimer);
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -109,7 +116,7 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
       <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label={`${serviceLabel} navigation`}>
         <div className="site-nav__inner">
           <Link className="site-nav__brand" href="/">
-            <span className="site-nav__brand-accent">Ai</span>thentic
+            <BrandMark className="site-nav__brand-mark h-[6.5rem] w-auto sm:h-[6.5rem]" priority />
           </Link>
 
           <nav className="site-nav__links" aria-label={`${serviceLabel} section links`}>

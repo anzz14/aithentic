@@ -149,25 +149,14 @@ button {
 .site-nav__brand {
   color: var(--color-text);
   text-decoration: none;
-  font-family: var(--font-syne), Arial, Helvetica, sans-serif;
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
 }
 
-.site-nav__brand-accent {
+.site-nav__brand-mark {
   display: inline-block;
-  color: var(--color-accent);
-  background-image: linear-gradient(135deg, #fb923c 0%, var(--color-accent) 45%, var(--color-accent-strong) 100%);
-}
-
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .site-nav__brand-accent {
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-  }
+  object-fit: contain;
 }
 
 .site-nav__links {

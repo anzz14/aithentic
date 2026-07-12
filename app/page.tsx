@@ -5,6 +5,7 @@ import { rotatingWords, testimonials } from "./components/data";
 import { CtaBannerSection } from "./components/sections/CtaBannerSection";
 import { ContactModal } from "./components/ContactModal";
 import { AuditModal } from "./components/AuditModal";
+import { BrandMark } from "./components/BrandMark";
 import { HeroSection } from "./components/sections/HeroSection";
 import { ProcessSection } from "./components/sections/ProcessSection";
 import { ServicesSection } from "./components/sections/ServicesSection";
@@ -177,7 +178,7 @@ export default function Home() {
       <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label="Primary navigation">
         <div className="site-nav__inner">
           <a className="site-nav__brand" href="#top">
-            <span className="site-nav__brand-accent">Ai</span>thentic
+            <BrandMark className="site-nav__brand-mark h-[5.5rem] w-auto sm:h-[6rem]" priority />
           </a>
 
           <nav className="site-nav__links" aria-label="Section links">
