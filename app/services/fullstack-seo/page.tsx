@@ -137,6 +137,94 @@ const detailSections = [
   },
 ] as const;
 
+const caseStudyDetails = [
+  {
+    title: "In Forno Charlestown",
+    clientLine: "In Forno Charlestown, Australia - Restaurant",
+    aboutClient:
+      "Authentic Italian restaurant in Australia serving handcrafted pizzas, fresh pasta, wood-fired specialties, and a memorable dine-in experience.",
+    problem: ["Low organic traffic", "Poor rankings", "Low leads", "Weak online visibility"],
+    actions: [
+      "Local SEO optimization",
+      "Google Business Profile optimization",
+      "Local keyword targeting",
+      "On-page SEO improvements",
+      "Location-based content optimization",
+      "Citation Management",
+    ],
+    stats: ["Organic Traffic: +36%", "Keywords Ranked: 200+", "Leads Generated: +300%", "Timeline: 5 Months"],
+  },
+  {
+    title: "Silver Ridge Lodge",
+    clientLine: "Silver Ridge Lodge, USA - Hospitality",
+    aboutClient:
+      "Comfortable motel in the USA offering affordable accommodations, modern amenities, and convenient access to nearby attractions.",
+    problem: [
+      "Low organic traffic",
+      "No visibility on AI Searches",
+      "Poor rankings",
+      "Low leads",
+      "Weak online visibility",
+    ],
+    actions: [
+      "SEO",
+      "AEO and GEO",
+      "FAQ optimization",
+      "Google Business Profile optimization",
+      "Local keyword targeting",
+      "On-page SEO improvements",
+      "Location-based content optimization",
+      "Citation Management",
+    ],
+    stats: ["Organic Traffic: +4%", "Keywords Ranked: 50+", "Leads Generated: +30%", "Timeline: 4 Months"],
+  },
+  {
+    title: "Nanhe Munhe Pre-school",
+    clientLine: "Nanhe Munhe Pre-school - Education Centre",
+    aboutClient:
+      "An early childhood education center in Mumbai providing elite-quality preschool programs in a safe, nurturing, and engaging learning environment.",
+    problem: [
+      "Low organic traffic",
+      "No visibility on AI Searches",
+      "Poor rankings",
+      "Low leads",
+      "Weak online visibility",
+    ],
+    actions: [
+      "SEO",
+      "AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization)",
+      "Google Business Profile optimization",
+      "Local keyword targeting",
+      "On-page SEO",
+      "Location-based content optimization",
+      "Citation building",
+    ],
+    stats: ["Organic Traffic: +200%", "Keywords Ranked: 100+", "Leads Generated: +300%", "Timeline: 12 Months"],
+  },
+  {
+    title: "Trophy Mall",
+    clientLine: "Trophy Mall - E-Commerce",
+    aboutClient:
+      "An online store of a business specializing in trophies, medals, awards, plaques, and customized recognition products for schools, businesses, sports events, and organizations.",
+    problem: [
+      "Low organic traffic",
+      "No visibility on AI Searches",
+      "Poor rankings",
+      "Low leads",
+      "Weak online visibility",
+    ],
+    actions: [
+      "SEO",
+      "AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization)",
+      "AI-friendly product descriptions",
+      "Structured data (Product & Review Schema)",
+      "Keyword targeting",
+      "Image optimization",
+    ],
+    stats: ["Organic Traffic: +40%", "Keywords Ranked: 500+", "Leads Generated: +300%", "Timeline: 12 Months"],
+  },
+] as const;
+
 const processSteps = [
   "SEO Audit",
   "Strategy Development",
@@ -452,232 +540,49 @@ export default function FullstackSeoPage() {
       <motion.section className="seo-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10% 0px -10% 0px" }}>
         <motion.h2 className="seo-section__title" variants={itemVariants}>Case Studies</motion.h2>
         <motion.div className="seo-detail__accordion" variants={sectionVariants}>
-          <motion.details className="seo-detail__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -2 }}>
-            <summary className="seo-detail__summary">
-              <span className="seo-detail__summaryTitle">In Forno Charlestown, Australia</span>
-              <ChevronDown size={18} strokeWidth={2.25} aria-hidden="true" />
-            </summary>
-            <div className="seo-detail__panel">
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <p className="seo-detail__eyebrow">Industry</p>
-                  <p className="seo-detail__copyText">Restaurant</p>
-                </article>
-                <article className="seo-detail__caseCard">
+          {caseStudyDetails.map((caseStudy) => (
+            <motion.details key={caseStudy.title} className="seo-detail__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -2 }}>
+              <summary className="seo-detail__summary">
+                <span className="seo-detail__summaryTitle">{caseStudy.title}</span>
+                <ChevronDown size={18} strokeWidth={2.25} aria-hidden="true" />
+              </summary>
+              <div className="seo-detail__panel">
+                <div className="seo-detail__introCard">
                   <p className="seo-detail__eyebrow">About the Client</p>
-                  <p className="seo-detail__copyText">Authentic Italian restaurant in Australia serving handcrafted pizzas, fresh pasta, wood-fired specialties, and a memorable dine-in experience.</p>
-                </article>
+                  <p className="seo-detail__copyText">{caseStudy.clientLine}</p>
+                  <p className="seo-detail__copyText">{caseStudy.aboutClient}</p>
+                </div>
+                <div className="seo-detail__columns">
+                  <article className="seo-detail__columnCard">
+                    <h4>The Problem</h4>
+                    <ul className="seo-detail__featureList">
+                      {caseStudy.problem.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                  <article className="seo-detail__columnCard">
+                    <h4>What We Did</h4>
+                    <ul className="seo-detail__featureList">
+                      {caseStudy.actions.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </div>
+                <div className="seo-detail__actions flex flex-wrap gap-3">
+                  {caseStudy.stats.map((stat) => (
+                    <span
+                      key={stat}
+                      className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white"
+                    >
+                      {stat}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <h4>The Challenge</h4>
-                  <ul className="seo-case__list">
-                    <li>Low organic traffic</li>
-                    <li>Poor rankings</li>
-                    <li>Low leads</li>
-                    <li>Weak online visibility</li>
-                  </ul>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <h4>What We Did</h4>
-                  <ul className="seo-case__list">
-                    <li>Local SEO optimization</li>
-                    <li>Google Business Profile optimization</li>
-                    <li>Local keyword targeting</li>
-                    <li>On-page SEO improvements</li>
-                    <li>Location-based content optimization</li>
-                    <li>Citation Management</li>
-                  </ul>
-                </article>
-              </div>
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <h4>Results Achieved</h4>
-                  <ul className="seo-case__list">
-                    <li>Organic Traffic: +36%</li>
-                    <li>Keywords Ranked: 200+</li>
-                    <li>Leads Generated: +300%</li>
-                    <li>Timeline: 5 Months</li>
-                  </ul>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <h4>Final Outcome</h4>
-                  <p className="seo-detail__copyText">Within 5 months, In Forno's online visibility increased by almost 36%, helping them generate more organic visibility, qualified leads, and sustainable growth.</p>
-                  <p className="seo-case__growth">36.3% Growth</p>
-                </article>
-              </div>
-            </div>
-          </motion.details>
-
-          <motion.details className="seo-detail__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -2 }}>
-            <summary className="seo-detail__summary">
-              <span className="seo-detail__summaryTitle">Silver Ridge Lodge, USA</span>
-              <ChevronDown size={18} strokeWidth={2.25} aria-hidden="true" />
-            </summary>
-            <div className="seo-detail__panel">
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <p className="seo-detail__eyebrow">Industry</p>
-                  <p className="seo-detail__copyText">Hospitality</p>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <p className="seo-detail__eyebrow">About the Client</p>
-                  <p className="seo-detail__copyText">Comfortable motel in the USA offering affordable accommodations, modern amenities, and convenient access to nearby attractions.</p>
-                </article>
-              </div>
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <h4>The Challenge</h4>
-                  <ul className="seo-case__list">
-                    <li>Low organic traffic</li>
-                    <li>No visibility on AI Searches</li>
-                    <li>Poor rankings</li>
-                    <li>Low leads</li>
-                    <li>Weak online visibility</li>
-                  </ul>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <h4>What We Did</h4>
-                  <ul className="seo-case__list">
-                    <li>SEO</li>
-                    <li>AEO and GEO</li>
-                    <li>FAQ optimization</li>
-                    <li>Google Business Profile optimization</li>
-                    <li>Local keyword targeting</li>
-                    <li>On-page SEO improvements</li>
-                    <li>Location-based content optimization</li>
-                    <li>Citation Management</li>
-                  </ul>
-                </article>
-              </div>
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <h4>Results Achieved</h4>
-                  <ul className="seo-case__list">
-                    <li>Organic Traffic: +4%</li>
-                    <li>Keywords Ranked: 50+</li>
-                    <li>Leads Generated: +30%</li>
-                    <li>Timeline: 4 Months</li>
-                  </ul>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <h4>Final Outcome</h4>
-                  <p className="seo-detail__copyText">Silver Ridge's AI and online visibility boosted by almost 4%, helping them generate more organic visibility, qualified leads, and sustainable growth.</p>
-                </article>
-              </div>
-            </div>
-          </motion.details>
-
-          <motion.details className="seo-detail__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -2 }}>
-            <summary className="seo-detail__summary">
-              <span className="seo-detail__summaryTitle">Nanhe Munhe Pre-school</span>
-              <ChevronDown size={18} strokeWidth={2.25} aria-hidden="true" />
-            </summary>
-            <div className="seo-detail__panel">
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <p className="seo-detail__eyebrow">Industry</p>
-                  <p className="seo-detail__copyText">Education Centre</p>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <p className="seo-detail__eyebrow">About the Client</p>
-                  <p className="seo-detail__copyText">An early childhood education center in Mumbai providing elite-quality preschool programs in a safe, nurturing, and engaging learning environment</p>
-                </article>
-              </div>
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <h4>The Challenge</h4>
-                  <ul className="seo-case__list">
-                    <li>Low organic traffic</li>
-                    <li>No visibility on AI Searches</li>
-                    <li>Poor rankings</li>
-                    <li>Low leads</li>
-                    <li>Weak online visibility</li>
-                  </ul>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <h4>What We Did</h4>
-                  <ul className="seo-case__list">
-                    <li>SEO</li>
-                    <li>AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization)</li>
-                    <li>Google Business Profile optimization</li>
-                    <li>Local keyword targeting</li>
-                    <li>On-page SEO</li>
-                    <li>Location-based content optimization</li>
-                    <li>Citation building</li>
-                  </ul>
-                </article>
-              </div>
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <h4>Results Achieved</h4>
-                  <ul className="seo-case__list">
-                    <li>Organic Traffic: +200%</li>
-                    <li>Keywords Ranked: 100+</li>
-                    <li>Leads Generated: +300%</li>
-                    <li>Timeline: 12 Months</li>
-                  </ul>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <h4>Final Outcome</h4>
-                  <p className="seo-case__growth">15.5% Overall Growth</p>
-                </article>
-              </div>
-            </div>
-          </motion.details>
-
-          <motion.details className="seo-detail__item" variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -2 }}>
-            <summary className="seo-detail__summary">
-              <span className="seo-detail__summaryTitle">Trophy Mall</span>
-              <ChevronDown size={18} strokeWidth={2.25} aria-hidden="true" />
-            </summary>
-            <div className="seo-detail__panel">
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <p className="seo-detail__eyebrow">Industry</p>
-                  <p className="seo-detail__copyText">E-Commerce</p>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <p className="seo-detail__eyebrow">About the Client</p>
-                  <p className="seo-detail__copyText">An online store of a business specializing in trophies, medals, awards, plaques, and customized recognition products for schools, businesses, sports events, and organizations.</p>
-                </article>
-              </div>
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <h4>The Challenge</h4>
-                  <ul className="seo-case__list">
-                    <li>Low organic traffic</li>
-                    <li>No visibility on AI Searches</li>
-                    <li>Poor rankings</li>
-                    <li>Low leads</li>
-                    <li>Weak online visibility</li>
-                  </ul>
-                </article>
-                <article className="seo-detail__caseCard">
-                  <h4>What We Did</h4>
-                  <ul className="seo-case__list">
-                    <li>SEO</li>
-                    <li>AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization)</li>
-                    <li>AI-friendly product descriptions</li>
-                    <li>Structured data (Product & Review Schema)</li>
-                    <li>Keyword targeting</li>
-                    <li>Image optimization</li>
-                  </ul>
-                </article>
-              </div>
-              <div className="seo-detail__caseGrid">
-                <article className="seo-detail__caseCard">
-                  <h4>Results Achieved</h4>
-                  <ul className="seo-case__list">
-                    <li>Organic Traffic: +40%</li>
-                    <li>Keywords Ranked: 500+</li>
-                    <li>Leads Generated: +300%</li>
-                    <li>Timeline: 12 Months</li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </motion.details>
+            </motion.details>
+          ))}
         </motion.div>
       </motion.section>
 
