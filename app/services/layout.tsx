@@ -22,6 +22,7 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
   const navLinks = useMemo(
     () => [
       { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
       { label: "Stats", href: "#stats" },
       { label: "Services", href: "#services" },
       { label: "Process", href: "#process" },
@@ -116,18 +117,28 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
       <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label={`${serviceLabel} navigation`}>
         <div className="site-nav__inner">
           <Link className="site-nav__brand" href="/">
-            <BrandMark className="site-nav__brand-mark h-[6.5rem] w-auto sm:h-[6.5rem]" priority />
+            <BrandMark className="site-nav__brand-mark h-26 w-auto sm:h-26" priority />
           </Link>
 
           <nav className="site-nav__links" aria-label={`${serviceLabel} section links`}>
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                className={`site-nav__link${activeHref === link.href ? " site-nav__link--active" : ""}`}
-                href={link.href}
-              >
-                {link.label}
-              </a>
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  className={`site-nav__link${activeHref === link.href ? " site-nav__link--active" : ""}`}
+                  href={link.href}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  className={`site-nav__link${activeHref === link.href ? " site-nav__link--active" : ""}`}
+                  href={link.href}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </nav>
 

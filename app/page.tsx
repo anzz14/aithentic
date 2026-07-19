@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { rotatingWords, testimonials } from "./components/data";
 import { CtaBannerSection } from "./components/sections/CtaBannerSection";
@@ -19,6 +20,7 @@ export default function Home() {
     { label: "Services", href: "#services" },
     { label: "Process", href: "#process" },
     { label: "Testimonials", href: "#testimonials" },
+    { label: "About", href: "/about" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -178,14 +180,20 @@ export default function Home() {
       <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label="Primary navigation">
         <div className="site-nav__inner">
           <a className="site-nav__brand" href="#top">
-            <BrandMark className="site-nav__brand-mark h-[5.5rem] w-auto sm:h-[6rem]" priority />
+            <BrandMark className="site-nav__brand-mark h-22 w-auto sm:h-24" priority />
           </a>
 
           <nav className="site-nav__links" aria-label="Section links">
             {navLinks.map((link) => (
-              <a key={link.href} className="site-nav__link" href={link.href}>
-                {link.label}
-              </a>
+              link.href.startsWith("#") ? (
+                <a key={link.href} className="site-nav__link" href={link.href}>
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.href} className="site-nav__link" href={link.href}>
+                  {link.label}
+                </Link>
+              )
             ))}
           </nav>
 
