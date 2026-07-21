@@ -6,10 +6,13 @@ import { usePathname } from "next/navigation";
 import { BrandMark } from "../components/BrandMark";
 
 export default function ServicesLayout({ children }: { children: ReactNode }) {
+  const whatsappHref = "https://wa.me/7021091516";
+
   const pathname = usePathname();
   const [activeHref, setActiveHref] = useState<string>("/");
 
   const [isNavScrolled, setIsNavScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const serviceLabel = useMemo(() => {
     const slug = pathname.split("/").filter(Boolean).pop() ?? "services";
@@ -112,6 +115,10 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
     };
   }, [navLinks]);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   return (
     <div className="relative">
       <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label={`${serviceLabel} navigation`}>
@@ -120,6 +127,19 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
             <BrandMark className="site-nav__brand-mark h-26 w-auto sm:h-26" priority />
           </Link>
 
+          <button
+            type="button"
+            className="site-nav__hamburger"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav-menu-services"
+            onClick={() => setIsMobileMenuOpen((current) => !current)}
+          >
+            <span className="site-nav__hamburger-line" />
+            <span className="site-nav__hamburger-line" />
+            <span className="site-nav__hamburger-line" />
+          </button>
+
           <nav className="site-nav__links" aria-label={`${serviceLabel} section links`}>
             {navLinks.map((link) => (
               link.href.startsWith("#") ? (
@@ -127,6 +147,7 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
                   key={link.href}
                   className={`site-nav__link${activeHref === link.href ? " site-nav__link--active" : ""}`}
                   href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </a>
@@ -135,6 +156,7 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
                   key={link.href}
                   className={`site-nav__link${activeHref === link.href ? " site-nav__link--active" : ""}`}
                   href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
@@ -142,9 +164,54 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <Link className="site-nav__cta" href="/#contact">
-            Contact
-          </Link>
+          <a
+            className="site-nav__cta site-nav__cta--desktop"
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp
+          </a>
+        </div>
+
+        <div
+          id="mobile-nav-menu-services"
+          className={`site-nav__mobile-panel${isMobileMenuOpen ? " is-open" : ""}`}
+          aria-hidden={!isMobileMenuOpen}
+        >
+          <nav className="site-nav__mobile-links" aria-label={`${serviceLabel} mobile section links`}>
+            {navLinks.map((link) => (
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  className={`site-nav__mobile-link${activeHref === link.href ? " site-nav__mobile-link--active" : ""}`}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  className={`site-nav__mobile-link${activeHref === link.href ? " site-nav__mobile-link--active" : ""}`}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )
+            ))}
+          </nav>
+
+          <a
+            className="site-nav__cta site-nav__cta--mobile"
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            WhatsApp
+          </a>
         </div>
       </header>
       {children}

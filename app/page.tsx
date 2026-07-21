@@ -16,6 +16,8 @@ import { WhyUsSection } from "./components/sections/WhyUsSection";
 import { FooterSection } from "./components/sections/FooterSection";
 
 export default function Home() {
+  const whatsappHref = "https://wa.me/7021091516";
+
   const navLinks = [
     { label: "Services", href: "#services" },
     { label: "Process", href: "#process" },
@@ -33,6 +35,7 @@ export default function Home() {
     "idle" | "exiting" | "entering"
   >("idle");
   const [isNavScrolled, setIsNavScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuditOpen, setIsAuditOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
 
@@ -158,6 +161,10 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, []);
+
   const activateTestimonial = (index: number) => {
     if (index === testimonialIndex) {
       return;
@@ -183,6 +190,19 @@ export default function Home() {
             <BrandMark className="site-nav__brand-mark h-22 w-auto sm:h-24" priority />
           </a>
 
+          <button
+            type="button"
+            className="site-nav__hamburger"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav-menu-home"
+            onClick={() => setIsMobileMenuOpen((current) => !current)}
+          >
+            <span className="site-nav__hamburger-line" />
+            <span className="site-nav__hamburger-line" />
+            <span className="site-nav__hamburger-line" />
+          </button>
+
           <nav className="site-nav__links" aria-label="Section links">
             {navLinks.map((link) => (
               link.href.startsWith("#") ? (
@@ -197,15 +217,56 @@ export default function Home() {
             ))}
           </nav>
 
-          <button
-            className="site-nav__cta"
-            type="button"
+          <a
+            className="site-nav__cta site-nav__cta--desktop"
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp
+          </a>
+        </div>
+
+        <div
+          id="mobile-nav-menu-home"
+          className={`site-nav__mobile-panel${isMobileMenuOpen ? " is-open" : ""}`}
+          aria-hidden={!isMobileMenuOpen}
+        >
+          <nav className="site-nav__mobile-links" aria-label="Mobile section links">
+            {navLinks.map((link) => (
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  className="site-nav__mobile-link"
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  className="site-nav__mobile-link"
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )
+            ))}
+          </nav>
+
+          <a
+            className="site-nav__cta site-nav__cta--mobile"
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => {
-              setIsContactOpen(true);
+              setIsMobileMenuOpen(false);
             }}
           >
-            Contact Us
-          </button>
+            WhatsApp
+          </a>
         </div>
       </header>
 

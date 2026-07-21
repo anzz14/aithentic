@@ -73,6 +73,8 @@ export const metadata = {
 };
 
 export default function AboutPage() {
+  const whatsappHref = "https://wa.me/7021091516";
+
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/#services" },
@@ -90,6 +92,37 @@ export default function AboutPage() {
             <BrandMark className="site-nav__brand-mark h-22 w-auto sm:h-24" priority />
           </Link>
 
+          <details className="site-nav__mobile-disclosure">
+            <summary className="site-nav__hamburger" aria-label="Toggle navigation menu">
+              <span className="site-nav__hamburger-line" />
+              <span className="site-nav__hamburger-line" />
+              <span className="site-nav__hamburger-line" />
+            </summary>
+
+            <div className="site-nav__mobile-panel is-open">
+              <nav className="site-nav__mobile-links" aria-label="Mobile site links">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    className={`site-nav__mobile-link${link.href === "/about" ? " site-nav__mobile-link--active" : ""}`}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+
+              <a
+                className="site-nav__cta site-nav__cta--mobile"
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp
+              </a>
+            </div>
+          </details>
+
           <nav className="site-nav__links" aria-label="Site links">
             {navLinks.map((link) => (
               <Link
@@ -102,9 +135,14 @@ export default function AboutPage() {
             ))}
           </nav>
 
-          <Link className="site-nav__cta" href="/#contact">
-            Get a Free Growth Audit
-          </Link>
+          <a
+            className="site-nav__cta site-nav__cta--desktop"
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp
+          </a>
         </div>
       </header>
 
