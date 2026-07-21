@@ -124,7 +124,7 @@ export default function ServicesLayout({ children }: { children: ReactNode }) {
       <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label={`${serviceLabel} navigation`}>
         <div className="site-nav__inner">
           <Link className="site-nav__brand" href="/">
-            <BrandMark className="site-nav__brand-mark h-26 w-auto sm:h-26" priority />
+            <BrandMark className="site-nav__brand-mark h-28 w-auto sm:h-30" priority />
           </Link>
 
           <button

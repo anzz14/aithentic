@@ -17,6 +17,11 @@ const poppinsBody = Poppins({
 export const metadata: Metadata = {
   title: "Aithentic | AI-Powered Agency",
   description: "A bold single-page agency hero built for AI-led digital experiences.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({

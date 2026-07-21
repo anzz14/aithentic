@@ -2646,7 +2646,15 @@ button {
 
     .visibility-boost__stats {
       width: 100%;
-      gap: 0.9rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 0.55rem;
+    }
+
+    .visibility-boost__stat {
+      display: inline-flex;
+      width: fit-content;
     }
 
     .visibility-boost__stat + .visibility-boost__stat::before {

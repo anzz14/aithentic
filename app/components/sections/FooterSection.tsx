@@ -69,7 +69,7 @@ export function FooterSection({ fullPage = false }: FooterSectionProps) {
                 alt="Aithentic"
                 width={200}
                 height={150}
-                className="h-20 w-auto sm:h-28"
+                className="h-24 w-auto sm:h-32"
                 priority
               />
             </a>

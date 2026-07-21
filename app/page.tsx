@@ -187,7 +187,7 @@ export default function Home() {
       <header className={`site-nav${isNavScrolled ? " site-nav--scrolled" : ""}`} aria-label="Primary navigation">
         <div className="site-nav__inner">
           <a className="site-nav__brand" href="#top">
-            <BrandMark className="site-nav__brand-mark h-22 w-auto sm:h-24" priority />
+            <BrandMark className="site-nav__brand-mark h-24 w-auto sm:h-28" priority />
           </a>
 
           <button

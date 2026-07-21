@@ -89,7 +89,7 @@ export default function AboutPage() {
       <header className="site-nav site-nav--scrolled" aria-label="About navigation">
         <div className="site-nav__inner">
           <Link className="site-nav__brand" href="/">
-            <BrandMark className="site-nav__brand-mark h-22 w-auto sm:h-24" priority />
+            <BrandMark className="site-nav__brand-mark h-24 w-auto sm:h-28" priority />
           </Link>
 
           <details className="site-nav__mobile-disclosure">
